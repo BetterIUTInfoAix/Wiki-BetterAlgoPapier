@@ -1,0 +1,52 @@
+/**
+ * Wiki BetterAlgoPapier — thème Infima custom.
+ * Objectif : lisibilité L1, style cppreference, FR, clair et accessible.
+ */
+
+:root {
+  --ifm-color-primary: #1e40af;
+  --ifm-color-primary-dark: #1b3a9e;
+  --ifm-color-primary-darker: #193795;
+  --ifm-color-primary-darkest: #152d7b;
+  --ifm-color-primary-light: #2147c0;
+  --ifm-color-primary-lighter: #234ac9;
+  --ifm-color-primary-lightest: #2f56d4;
+  --ifm-code-font-size: 92%;
+  --ifm-line-height-base: 1.7;
+  --ifm-heading-font-weight: 700;
+  --docusaurus-highlighted-code-line-bg: rgba(30, 64, 175, 0.08);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #8ea6ff;
+  --ifm-color-primary-dark: #718dff;
+  --ifm-color-primary-darker: #6181ff;
+  --ifm-color-primary-darkest: #3a5bff;
+  --ifm-color-primary-light: #abbfff;
+  --ifm-color-primary-lighter: #bbcbff;
+  --ifm-color-primary-lightest: #e0e7ff;
+  --docusaurus-highlighted-code-line-bg: rgba(142, 166, 255, 0.15);
+}
+
+/* Largeur de lecture type wiki, pas trop large pour les L1 */
+.main-wrapper .container {
+  max-width: 88rem;
+}
+
+.markdown {
+  max-width: 75ch;
+}
+
+.markdown h1 {
+  letter-spacing: -0.02em;
+}
+
+.markdown table {
+  display: table;
+  width: 100%;
+}
+
+/* Blocs algo : toujours monospace + retours clairs */
+code[class*='language-algo'] {
+  white-space: pre;
+}
