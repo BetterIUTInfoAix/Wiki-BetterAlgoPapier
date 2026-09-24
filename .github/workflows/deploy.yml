@@ -22,11 +22,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Historique complet : showLastUpdateTime a besoin du git log des docs.
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           # Source unique de vérité : .nvmrc (Node >= 24).
           node-version-file: .nvmrc
@@ -35,8 +35,9 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       # Pas d'artefact sur les PR : il ne sert qu'au job deploy (main).
+      # v5 exclut les dotfiles (dont .nojekyll, inutile en déploiement Actions).
       - if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: build
 
@@ -49,4 +50,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
