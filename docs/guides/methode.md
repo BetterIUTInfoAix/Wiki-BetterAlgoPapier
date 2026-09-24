@@ -8,7 +8,7 @@ description: Une méthode en 6 étapes pour passer du sujet au programme.
 
 **L’idée en une phrase :** face à un énoncé, ne code jamais tout de suite — suis ces 6 étapes dans l’ordre, et le programme s’écrira presque tout seul.
 
-:::info Prérequis
+:::info[Prérequis]
 Avoir survolé les [Premiers pas](/decouverte/algorithme). Cette page sert pendant tout le semestre.
 :::
 
@@ -49,7 +49,7 @@ Trace avec `n1 = 10`, `n2 = 14` :
 | calcul | 10 | 14 | 12 | — |
 | afficher | 10 | 14 | 12 | 12 |
 
-:::tip Bloqué plus de 10 minutes ?
+:::tip[Bloqué plus de 10 minutes ?]
 Reviens une étape en arrière : 90 % des blocages viennent d’une variable mal choisie (étape 2) ou d’un énoncé mal lu (étape 1), pas de la syntaxe.
 :::
 

@@ -8,7 +8,7 @@ description: si/sinon/fsi et choix_sur pour prendre des décisions.
 
 **L’idée en une phrase :** `si` pose ta question, et le programme prend un chemin ou un autre selon la réponse — comme un aiguillage.
 
-:::info Prérequis
+:::info[Prérequis]
 [Comparer](/tests/operateurs) — tes questions avec `vaut` vont servir ici.
 :::
 
@@ -72,7 +72,7 @@ Avec `jour` qui vaut 2 :
 | 3 | `cas 2 :` | 2 vaut 2 → on exécute |
 | 4 | `afficher ("Mardi");` | L’écran affiche : Mardi |
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 Chaque `si` veut son `fsi`, chaque `choix_sur` son `fchoix`. Si ton programme « fait les deux chemins », cherche le `fsi` oublié — c’est lui 9 fois sur 10.
 :::
 

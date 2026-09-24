@@ -8,7 +8,7 @@ description: pour, tant_que, repeter et boucle — avec tableaux d’exécution.
 
 **L’idée en une phrase :** dès que tu te surprends à copier-coller la même ligne, c’est qu’il te faut une boucle — tu décris **combien de fois** ou **jusqu’à quand**, et elle s’occupe du reste.
 
-:::info Prérequis
+:::info[Prérequis]
 [Choisir avec si](/tests/conditions) — les boucles testent des conditions à chaque tour.
 :::
 
@@ -131,7 +131,7 @@ ffaire
 | « Au moins une fois, puis jusqu’à ce que… » | `repeter ... jusqua` |
 | « Je sortirai quand je déciderai » | `boucle` + `sortie` |
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 La boucle infinie accidentelle : dans une `tant_que`, la variable testée **doit changer** dans le corps. Si tu testes `age` mais que tu ne `saisir` rien dedans, ça tourne pour toujours. En cas de doute : trace deux tours dans ton tableau.
 :::
 

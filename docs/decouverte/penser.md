@@ -8,7 +8,7 @@ description: L'algo avant le code, la rigueur avant tout, et le sandwich choco-b
 
 **L’idée en une phrase :** avant d’écrire la moindre ligne, tu dois raisonner comme une machine ultra-obéissante et zéro-débrouillarde — c’est ça, la pensée algorithmique.
 
-:::info Prérequis
+:::info[Prérequis]
 Aucun. Lis-moi en premier, même avant le premier programme.
 :::
 
@@ -40,7 +40,7 @@ En début de cursus, près de **50 % des étudiants échouent au test de positio
 
 Retiens le deal : **l’IA assiste, tu valides.** Et pour valider, il faut comprendre. D’où ce wiki.
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 « Ça marchera, l’ordinateur comprendra ce que je veux dire. » Non. Il fera exactement ce que tu as écrit — ni plus, ni moins. Quand ça plante, relis ce que tu as **vraiment** écrit, pas ce que tu **voulais** écrire.
 :::
 

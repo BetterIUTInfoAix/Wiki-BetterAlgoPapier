@@ -36,6 +36,6 @@ Chaque page suit le même plan :
 
 Commence ici : [Penser comme un ordinateur](/decouverte/penser). Cinq minutes, un sandwich choco-banane, et tu comprendras pourquoi la rigueur n’est pas une option.
 
-:::tip C’est normal
+:::tip[C’est normal]
 Confondre `<-` et `vaut`, oublier un `;` ou un `fsi` : tout le monde passe par là. Chaque page signale le piège avant que tu tombes dedans.
 :::

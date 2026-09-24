@@ -8,7 +8,7 @@ description: "Référence des fonctions intégrées : E/S, tableaux, aléatoire,
 
 **L’idée en une phrase :** pas besoin de tout réinventer — le langage te donne des fonctions toutes prêtes, pioche dedans.
 
-:::info Prérequis
+:::info[Prérequis]
 Rien d’obligatoire : c’est une page **référence**, reviens-y quand tu en as besoin.
 :::
 
@@ -58,7 +58,7 @@ sinon
 fsi
 ```
 
-:::tip Réflexe
+:::tip[Réflexe]
 Quand tu te dis « il doit bien exister un truc pour… », cherche ici avant de coder : `taille`, `rand`, `isdigit` et les copains existent justement pour ça.
 :::
 
