@@ -8,7 +8,7 @@ description: Fiabilité, règles NASA et bonne posture face à l'IA.
 
 **L’idée en une phrase :** en pro, on ne juge pas un programme sur « ça marche sur mon exemple » mais sur « ça ne cassera jamais en vrai » — et l’histoire montre ce que coûte l’à-peu-près.
 
-:::info Prérequis
+:::info[Prérequis]
 Aucun : c’est de la culture d’ingénieur, à lire quand tu veux impressionner en TD.
 :::
 
@@ -47,7 +47,7 @@ L’IA produit du code **syntaxiquement correct mais parfois sémantiquement abe
 
 L’expert ne sacrifie jamais sa capacité de validation. Ce wiki existe pour ça : te rendre capable de dire « non, ce code est faux, et voilà pourquoi ».
 
-:::tip Pour briller en partiel
+:::tip[Pour briller en partiel]
 Cite une règle NASA pertinente dans ta copie (« boucle bornée, règle n°2 ») quand tu justifies une structure : les correcteurs adorent, et ça prouve que tu penses fiabilité, pas juste syntaxe.
 :::
 

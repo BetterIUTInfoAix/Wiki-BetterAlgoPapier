@@ -8,7 +8,7 @@ description: "Dialoguer avec l’utilisateur : afficher, saisir, ligne_suivante.
 
 **L’idée en une phrase :** ton programme peut parler (`afficher`) et écouter (`saisir`) — c’est comme ça qu’il devient interactif.
 
-:::info Prérequis
+:::info[Prérequis]
 [Écrire ton premier algorithme](/decouverte/algorithme) (le moule `debut`/`fin`).
 :::
 
@@ -71,7 +71,7 @@ afficher ("Bonjour " + prenom);
 - **Concaténation avec `+`** : on colle deux chaînes bout à bout.
 - **Accès caractère par caractère** : un `string` se lit comme un tableau (voir [chapitre 04](/donnees/tableaux)).
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 Chaque instruction se termine par `;` — y compris `saisir (age);` et `ligne_suivante;`. Les doubles quotes `"..."` pour les phrases, les simples quotes `'a'` pour un seul caractère.
 :::
 

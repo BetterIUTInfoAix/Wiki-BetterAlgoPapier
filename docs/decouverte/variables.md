@@ -8,7 +8,7 @@ description: Ranger des valeurs dans des boîtes typées avec declarer et <-.
 
 **L’idée en une phrase :** une variable, c’est une **case mémoire** — une boîte étiquetée (son nom) qui ne contient qu’une sorte de chose (son type), et tu y ranges avec `<-`.
 
-:::info Prérequis
+:::info[Prérequis]
 [Afficher et saisir](/decouverte/entrees-sorties) — tu as déjà utilisé des variables sans le savoir.
 :::
 
@@ -66,7 +66,7 @@ prixTTC <- prixHT * (1 + KtauxTVA);
 
 Une erreur de nom ne bloque pas l’exécution mais ruine la compréhension : appeler `Link` un livreur de princesse au lieu de `Mario`, personne ne s’y retrouve. Nomme ce que c’est, pas ce que ça fait joli.
 
-:::tip Caractères voisins
+:::tip[Caractères voisins]
 `succ (c)` donne le caractère suivant, `prec (c)` le précédent (certains polys écrivent `pred`, c’est la même idée — dans l’extension et ce wiki, c’est `prec`).
 :::
 
@@ -78,7 +78,7 @@ Une valeur qui ne changera jamais, avec un `K` devant (voir ci-dessus) :
 declarer KMAJEUR : entier <- 18;
 ```
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 `=` n’affecte **rien** en algo papier. `age = 19` ne range pas 19 dans `age` — il faut `age <- 19`. C’est l’erreur n°1 des débutants, et c’est normal de la faire.
 :::
 

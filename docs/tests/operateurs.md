@@ -8,7 +8,7 @@ description: vaut, ne_vaut_pas et la logique ET/OU/NON pour poser des questions.
 
 **L’idée en une phrase :** avant de choisir (`si`), il faut savoir poser une question à l’ordinateur — et les questions se posent avec `vaut`, pas avec `=`.
 
-:::info Prérequis
+:::info[Prérequis]
 [Variables](/decouverte/variables) — tu compares des boîtes dont tu connais le contenu.
 :::
 
@@ -69,7 +69,7 @@ si (fichier_existe (nom) ET_ALORS date_valide (nom))
 
 Avec un `ET` classique, la machine évaluerait quand même la date… et planterait. Retiens : **le test de garde d’abord, l’accès ensuite**. Même logique avec `OU_SINON` dans l’autre sens.
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 Trois symboles, trois jobs : `<-` **range**, `vaut` **compare**, `=` tout seul **ne fait ni l’un ni l’autre** dans une condition — oublie-le. Et `==` / `!=` n’existent pas en papier : c’est `vaut` / `ne_vaut_pas`.
 :::
 

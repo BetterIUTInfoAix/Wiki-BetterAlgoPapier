@@ -8,7 +8,7 @@ description: tableau_de, taille et redimensionner, main dans la main avec pour.
 
 **L’idée en une phrase :** quand une seule boîte ne suffit plus (30 notes, 50 prénoms), tu prends un **classeur** : un `tableau_de` qui range toute la série sous un seul nom.
 
-:::info Prérequis
+:::info[Prérequis]
 [Répéter avec des boucles](/boucles) — on remplit et on lit un tableau avec `pour`.
 :::
 
@@ -68,7 +68,7 @@ allonger (notes, 5);
 
 Ton classeur de 30 passe à 60 cases avec le premier, ou à 35 cases (dont 5 vides) avec le second. Pratique quand tu ne connais pas le nombre d’élèves à l’avance.
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 Déclare le tableau **avant** la boucle qui le remplit, et ne confonds pas le tableau (`notes`, le classeur) avec la variable temporaire (`note`, une case). Relis ton code à voix haute : « je saisis une note, je la range dans notes ».
 :::
 

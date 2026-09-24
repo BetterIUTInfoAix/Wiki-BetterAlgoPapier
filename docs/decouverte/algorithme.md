@@ -8,7 +8,7 @@ description: Le squelette algorithme/debut/fin et ton premier afficher.
 
 **L’idée en une phrase :** un algorithme, c’est une recette écrite dans un moule fixe — `algorithme`, `debut`, `fin` — et dedans, tu peux déjà afficher quelque chose.
 
-:::info Prérequis
+:::info[Prérequis]
 [Penser comme un ordinateur](/decouverte/penser) — 5 minutes pour comprendre pourquoi la machine ne devine rien.
 :::
 
@@ -56,7 +56,7 @@ fin
 
 Pas de panique si `in` et `renvoie` te semblent bizarres : pour l’instant, contente-toi de reconnaître les trois moules.
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 `fin` oublié = programme incomplet. Et les lignes de moule (`algorithme`, `debut`, `fin`) ne prennent **jamais** de `;`.
 :::
 

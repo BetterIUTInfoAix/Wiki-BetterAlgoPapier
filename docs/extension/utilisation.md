@@ -35,6 +35,6 @@ faire
 ffaire
 ```
 
-:::tip Suggestions
+:::tip[Suggestions]
 Les suggestions auto sont coupées dans les commentaires et les chaînes, mais les snippets restent disponibles. Les menus de types s’ouvrent avec `tableau_de`.
 :::

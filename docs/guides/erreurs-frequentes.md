@@ -8,7 +8,7 @@ description: Les 5 pièges classiques et comment les repérer seul.
 
 **L’idée en une phrase :** ces 5 erreurs, **tous** les débutants les font — les connaître, c’est les repérer en dix secondes au lieu de chercher une heure.
 
-:::info Prérequis
+:::info[Prérequis]
 Aucun : reviens ici chaque fois qu’un programme « ne marche pas ».
 :::
 
@@ -49,6 +49,6 @@ ffaire
 
 On teste `age` mais on ne le modifie jamais dans le corps : si `age` vaut 0 au départ, ça tourne pour toujours. Il manque le `saisir (age);` dans la boucle. En cas de doute, trace deux tours dans un tableau ([chapitre 03](/boucles)).
 
-:::tip Règle d’or du débogage
+:::tip[Règle d’or du débogage]
 Un seul suspect à la fois : affiche tes variables avec `afficher` juste avant l’endroit bizarre. Ce que montre l’écran tranche entre « la valeur est fausse » et « le test est faux ».
 :::

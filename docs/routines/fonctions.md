@@ -8,7 +8,7 @@ description: fonction, procedure et les marqueurs in/out/in_out enfin clairs.
 
 **L’idée en une phrase :** une fonction, c’est un collègue à qui tu confies un bout de travail — tu lui **donnes** des infos, il te **rend** un résultat, et les marqueurs disent qui a le droit de toucher à quoi.
 
-:::info Prérequis
+:::info[Prérequis]
 [Variables](/decouverte/variables) et [Boucles](/boucles) — une fonction manipule des variables, souvent dans une boucle.
 :::
 
@@ -93,7 +93,7 @@ fin
 
 Ici `n` est bien initialisé (via `saisir`) avant la fin de la procédure. Si tu oublies, c’est comme rendre un cahier vide en prétendant l’avoir rempli.
 
-:::danger Piège Casali
+:::danger[Piège Casali]
 `in` pour donner, `out`/`in_out` pour récupérer. Si ta procédure « ne rend rien » alors qu’elle devrait, vérifie le marqueur en premier — pas le corps. Et une `fonction` se termine par `renvoie ...;`, une `procedure` n’a pas de `renvoie`.
 :::
 
