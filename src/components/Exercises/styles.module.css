@@ -4,11 +4,18 @@
  */
 
 .exercise {
+  --ex-space-md: 1.25rem;
+  --ex-space-lg: 1.5rem;
+  --ex-radius: 12px;
+  --ex-title-size: 1.1rem;
+  --ex-body-size: 0.95rem;
   margin: 2rem 0;
-  padding: 1.5rem;
-  border-radius: 12px;
+  padding: var(--ex-space-lg);
+  border-radius: var(--ex-radius);
   border: 2px solid var(--ifm-color-emphasis-300);
   background: var(--ifm-card-background-color);
+  /* Cible du scroll auto : marge pour la navbar fixe */
+  scroll-margin-top: calc(var(--ifm-navbar-height, 4rem) + 0.5rem);
 }
 
 .quiz {
@@ -27,7 +34,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--ex-space-md);
   flex-wrap: wrap;
 }
 
@@ -43,8 +50,11 @@
   color: white;
 }
 
+/* Mode clair : texte vert foncé sur fond vert pâle (contraste AA).
+   Blanc sur #10b981 ≈ 2,3:1 → non conforme, donc inversé. */
 .fillInBlank .exerciseBadge {
-  background: #10b981;
+  background: #d1fae5;
+  color: #065f46;
 }
 
 [data-theme='dark'] .fillInBlank .exerciseBadge {
@@ -53,7 +63,7 @@
 }
 
 .exerciseTitle {
-  font-size: 1.1rem;
+  font-size: var(--ex-title-size);
   font-weight: 700;
   margin: 0;
   flex: 1;
@@ -65,8 +75,8 @@
   border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 700;
-  background: #10b981;
-  color: white;
+  background: #d1fae5;
+  color: #065f46;
 }
 
 [data-theme='dark'] .solvedBadge {
@@ -79,10 +89,13 @@
 .questions {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--ex-space-md);
 }
 
+/* fieldset (Quiz) ou div : reset commun pour un rendu identique */
 .question {
+  margin: 0;
+  min-width: 0;
   padding: 1rem;
   border-radius: 8px;
   border: 1px solid var(--ifm-color-emphasis-200);
@@ -109,8 +122,10 @@
   background: rgba(248, 113, 113, 0.08);
 }
 
+/* p (ancien markup) ou legend (fieldset Quiz) : reset commun */
 .questionText {
-  font-size: 0.95rem;
+  padding: 0;
+  font-size: var(--ex-body-size);
   margin-bottom: 0.75rem;
   line-height: 1.5;
 }
@@ -134,6 +149,25 @@
 
 .option:hover {
   border-color: var(--ifm-color-primary);
+}
+
+/* Le focus clavier arrive sur l'input natif : anneau visible sur le label */
+.option:focus-within {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-lightest);
+}
+
+/* Après soumission : curseur neutre, hover désamorcé, sélections lisibles */
+.isSubmitted .option {
+  cursor: default;
+}
+
+.isSubmitted .option:hover {
+  border-color: var(--ifm-color-emphasis-200);
+}
+
+.isSubmitted .optionSelected:not(.optionCorrect):not(.optionWrong) {
+  opacity: 0.75;
 }
 
 .optionSelected {
@@ -171,7 +205,7 @@
 }
 
 .optionLabel {
-  font-size: 0.9rem;
+  font-size: var(--ex-body-size);
   line-height: 1.4;
 }
 
@@ -179,7 +213,7 @@
   margin-top: 0.75rem;
   padding: 0.6rem 0.8rem;
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: var(--ex-body-size);
   line-height: 1.5;
 }
 
@@ -206,7 +240,7 @@
 /* --- FillInBlank --- */
 
 .hint {
-  font-size: 0.9rem;
+  font-size: var(--ex-body-size);
   color: var(--ifm-color-emphasis-600);
   font-style: italic;
   margin-bottom: 1rem;
@@ -215,7 +249,7 @@
 .blanksContainer {
   font-size: 1rem;
   line-height: 2.2;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--ex-space-md);
 }
 
 .blankGroup {
@@ -246,6 +280,14 @@
 .blankInput:focus {
   outline: none;
   border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-lightest);
+}
+
+/* Input désactivé après soumission : texte conservé à pleine opacité,
+   seul le contour signale l'état (correct/erreur) */
+.blankInput:disabled {
+  opacity: 1;
+  cursor: default;
 }
 
 .blankCorrect {
@@ -274,4 +316,17 @@
   display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Convention boutons d'exercice : variante Infima + cible tactile 44px */
+.actionsButton {
+  min-width: 10rem;
+  min-height: 44px;
+  font-weight: 700;
+}
+
+.actionsButton:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
 }

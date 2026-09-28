@@ -1,6 +1,7 @@
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect, useCallback, useRef} from 'react';
 import clsx from 'clsx';
 import type {FillInBlankConfig} from './types';
+import {scrollToNextExercise} from './scroll';
 import styles from './styles.module.css';
 
 /**
@@ -25,6 +26,7 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
   const [values, setValues] = useState<Record<number, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [solved, setSolved] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   // Charger le statut résolu depuis localStorage
   useEffect(() => {
@@ -38,6 +40,13 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
       // localStorage indisponible — ignorer
     }
   }, [storageKey]);
+
+  // Scroll manuel vers l'exercice suivant (bouton « Suivant »).
+  // Jamais automatique : pas de scroll au chargement, à la restauration
+  // « résolu » via localStorage, ni en cas d'échec.
+  const handleGoNext = useCallback(() => {
+    scrollToNextExercise(rootRef.current);
+  }, []);
 
   const handleChange = useCallback(
     (blankIdx: number, value: string) => {
@@ -80,8 +89,21 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
 
   const allFilled = blanks.every((_, idx) => (values[idx] ?? '').trim() !== '');
 
+  const allCorrect =
+    submitted &&
+    blanks.every((b, idx) =>
+      b.accepted.some((a) => normalize(values[idx] ?? '') === normalize(a)),
+    );
+
   return (
-    <div className={clsx(styles.exercise, styles.fillInBlank)}>
+    <div
+      ref={rootRef}
+      data-exercise
+      className={clsx(
+        styles.exercise,
+        styles.fillInBlank,
+        submitted && styles.isSubmitted,
+      )}>
       <div className={styles.exerciseHeader}>
         <span className={styles.exerciseBadge}>Texte à trous</span>
         <h4 className={styles.exerciseTitle}>{title}</h4>
@@ -112,7 +134,7 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
                   isCorrect && styles.blankCorrect,
                   isWrong && styles.blankWrong,
                 )}
-                aria-label={`Trou ${idx + 1}`}
+                aria-label={`Trou ${idx + 1}${b.before ? ` après « ${b.before.trim().slice(-40)} »` : ''}`}
               />
               <span className={styles.blankAfter}>{b.after}</span>
             </span>
@@ -120,20 +142,42 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
         })}
       </div>
 
+      {submitted && (
+        <div
+          role="status"
+          className={clsx(
+            styles.feedback,
+            allCorrect ? styles.feedbackCorrect : styles.feedbackWrong,
+          )}>
+          <strong>
+            {allCorrect ? 'Bonne réponse !' : 'Pas tout à fait — réessaie.'}
+          </strong>
+        </div>
+      )}
+
       <div className={styles.actions}>
         {!submitted ? (
           <button
-            className="button button--primary button--sm"
+            className={clsx('button button--primary button--sm', styles.actionsButton)}
             onClick={handleSubmit}
             disabled={!allFilled}>
             Valider
           </button>
         ) : (
-          <button
-            className="button button--outline button--sm"
-            onClick={handleReset}>
-            Recommencer
-          </button>
+          <>
+            <button
+              className={clsx('button button--outline button--sm', styles.actionsButton)}
+              onClick={handleReset}>
+              Recommencer
+            </button>
+            {solved && (
+              <button
+                className={clsx('button button--primary button--sm', styles.actionsButton)}
+                onClick={handleGoNext}>
+                Suivant
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>

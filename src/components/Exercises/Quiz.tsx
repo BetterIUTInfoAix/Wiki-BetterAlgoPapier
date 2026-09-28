@@ -1,6 +1,7 @@
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect, useCallback, useRef} from 'react';
 import clsx from 'clsx';
 import type {QuizConfig} from './types';
+import {scrollToNextExercise} from './scroll';
 import styles from './styles.module.css';
 
 /**
@@ -14,6 +15,7 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
   const [answers, setAnswers] = useState<Record<number, number[]>>({});
   const [submitted, setSubmitted] = useState(false);
   const [solved, setSolved] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   // Charger le statut résolu depuis localStorage
   useEffect(() => {
@@ -27,6 +29,13 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
       // localStorage indisponible — ignorer
     }
   }, [storageKey]);
+
+  // Scroll manuel vers l'exercice suivant (bouton « Suivant »).
+  // Jamais automatique : pas de scroll au chargement, à la restauration
+  // « résolu » via localStorage, ni en cas d'échec.
+  const handleGoNext = useCallback(() => {
+    scrollToNextExercise(rootRef.current);
+  }, []);
 
   const handleSelect = useCallback(
     (questionIdx: number, optionIdx: number) => {
@@ -85,7 +94,14 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
   );
 
   return (
-    <div className={clsx(styles.exercise, styles.quiz)}>
+    <div
+      ref={rootRef}
+      data-exercise
+      className={clsx(
+        styles.exercise,
+        styles.quiz,
+        submitted && styles.isSubmitted,
+      )}>
       <div className={styles.exerciseHeader}>
         <span className={styles.exerciseBadge}>QCM</span>
         <h4 className={styles.exerciseTitle}>{title}</h4>
@@ -102,16 +118,16 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
           const isWrong = submitted && !isCorrect;
 
           return (
-            <div
+            <fieldset
               key={qIdx}
               className={clsx(
                 styles.question,
                 isCorrect && styles.questionCorrect,
                 isWrong && styles.questionWrong,
               )}>
-              <p className={styles.questionText}>
+              <legend className={styles.questionText}>
                 <strong>{qIdx + 1}.</strong> {q.question}
-              </p>
+              </legend>
 
               <div className={styles.options}>
                 {q.options.map((opt, oIdx) => {
@@ -148,6 +164,7 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
 
               {submitted && (
                 <div
+                  role="status"
                   className={clsx(
                     styles.feedback,
                     isCorrect ? styles.feedbackCorrect : styles.feedbackWrong,
@@ -156,7 +173,7 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
                   {q.explanation}
                 </div>
               )}
-            </div>
+            </fieldset>
           );
         })}
       </div>
@@ -164,17 +181,26 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
       <div className={styles.actions}>
         {!submitted ? (
           <button
-            className="button button--primary button--sm"
+            className={clsx('button button--primary button--sm', styles.actionsButton)}
             onClick={handleSubmit}
             disabled={!allAnswered}>
             Valider
           </button>
         ) : (
-          <button
-            className="button button--outline button--sm"
-            onClick={handleReset}>
-            Recommencer
-          </button>
+          <>
+            <button
+              className={clsx('button button--outline button--sm', styles.actionsButton)}
+              onClick={handleReset}>
+              Recommencer
+            </button>
+            {solved && (
+              <button
+                className={clsx('button button--primary button--sm', styles.actionsButton)}
+                onClick={handleGoNext}>
+                Suivant
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>
