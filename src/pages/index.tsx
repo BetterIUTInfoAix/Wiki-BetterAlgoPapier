@@ -1,47 +1,25 @@
 import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
 
-import styles from './index.module.css';
-
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/intro">
-            Commencer le wiki
-          </Link>
-          <Link
-            className="button button--outline button--lg margin-left--sm"
-            to="/extension/installation"
-            style={{color: 'white', borderColor: 'white'}}>
-            Installer l’extension
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
+import LandingHero from '@site/src/components/LandingHero';
+import LandingStats from '@site/src/components/LandingStats';
+import LandingChapters from '@site/src/components/LandingChapters';
+import LandingExtension from '@site/src/components/LandingExtension';
+import LandingCompiler from '@site/src/components/LandingCompiler';
 
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title={siteConfig.title}
-      description="Wiki clair d’algo papier pour les L1 de l’IUT d’Aix — extension VSCode + futur compilateur.">
-      <HomepageHeader />
+      description="Wiki clair d'algo papier pour les L1 de l'IUT d'Aix — extension VSCode + futur compilateur.">
+      <LandingHero />
       <main>
-        <HomepageFeatures />
+        <LandingStats />
+        <LandingChapters />
+        <LandingExtension />
+        <LandingCompiler />
       </main>
     </Layout>
   );

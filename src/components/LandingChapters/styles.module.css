@@ -1,0 +1,96 @@
+.chapters {
+  padding: 4rem 0;
+}
+
+.chaptersInner {
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.chaptersTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.chaptersSubtitle {
+  text-align: center;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.chaptersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-card-background-color);
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  color: inherit;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+  color: inherit;
+}
+
+[data-theme='dark'] .card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cardNumber {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--ifm-color-primary);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 2.5rem;
+}
+
+.cardBody {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+.cardPrereq {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.cardPrereqLabel {
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-600);
+}
+
+@media screen and (max-width: 768px) {
+  .chaptersGrid {
+    grid-template-columns: 1fr;
+  }
+}

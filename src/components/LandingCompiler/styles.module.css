@@ -1,0 +1,67 @@
+.compiler {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.compilerInner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.compilerIcon {
+  color: var(--ifm-color-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.compilerTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.compilerDescription {
+  font-size: 1.05rem;
+  color: var(--ifm-color-emphasis-600);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.compilerTeaser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: var(--ifm-code-background);
+  border-radius: 10px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  margin-bottom: 1rem;
+}
+
+.compilerCode {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.compilerPrompt {
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+.compilerOutput {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
+
+.compilerNote {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-500);
+}
