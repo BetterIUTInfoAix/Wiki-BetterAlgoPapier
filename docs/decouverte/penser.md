@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Penser comme un ordinateur
 description: L'algo avant le code, la rigueur avant tout, et le sandwich choco-banane.
+format: mdx
 ---
 
 # Penser comme un ordinateur
@@ -51,3 +52,31 @@ Retiens le deal : **l’IA assiste, tu valides.** Et pour valider, il faut compr
 - **Créer** : repère dans ta journée une « boucle sans condition d’arrêt » (scroller, snoozer…) et formule sa condition d’arrêt.
 
 **Prochaine étape :** [Ton premier algorithme](/decouverte/algorithme) — on passe du concept au moule.
+
+<Quiz
+  id="penser-qcm-1"
+  title="La règle d'or de la pensée algo"
+  questions={[
+    {
+      question: "Tu écris ` Mets la banane dans le pain` et l'ordinateur glisse la banane **avec sa peau**. De qui est la faute ?",
+      options: [
+        "De l'ordinateur, il a mal compris",
+        "De l'énoncé : il manquait l'instruction d'éplucher",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "L'ordinateur exécute au pied de la lettre, **ni plus ni moins**. Toute imprécision devient une erreur : d'où la règle des instructions atomiques.",
+    },
+    {
+      question: "Un algorithme qui tourne sans s'arrêter est…",
+      options: [
+        "Un algorithme très puissant",
+        "Pas un algorithme : il lui manque une condition d'arrêt",
+        "Un algorithme, mais lent",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "Un algorithme se définit par des opérations **ordonnées** qui résolvent un problème en un temps **fini**. Sans condition d'arrêt, c'est un bug.",
+    },
+  ]}
+/>

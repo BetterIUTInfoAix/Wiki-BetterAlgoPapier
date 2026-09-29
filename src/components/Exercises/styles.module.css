@@ -1,0 +1,343 @@
+/**
+ * Styles pour les exercices interactifs (Quiz, FillInBlank).
+ * Basés sur les variables Infima → compatible thème clair/sombre.
+ */
+
+.exercise {
+  --ex-space-md: 1.25rem;
+  --ex-space-lg: 1.5rem;
+  --ex-radius: 12px;
+  --ex-title-size: 1.1rem;
+  --ex-body-size: 0.95rem;
+  margin: 2rem 0;
+  padding: var(--ex-space-lg);
+  border-radius: var(--ex-radius);
+  border: 2px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-card-background-color);
+  /* Cible du scroll auto : marge pour la navbar fixe */
+  scroll-margin-top: calc(var(--ifm-navbar-height, 4rem) + 0.5rem);
+}
+
+.quiz {
+  border-color: var(--ifm-color-primary);
+}
+
+.fillInBlank {
+  border-color: #10b981;
+}
+
+[data-theme='dark'] .fillInBlank {
+  border-color: #34d399;
+}
+
+.exerciseHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--ex-space-md);
+  flex-wrap: wrap;
+}
+
+.exerciseBadge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--ifm-color-primary);
+  color: white;
+}
+
+/* Mode clair : texte vert foncé sur fond vert pâle (contraste AA).
+   Blanc sur #10b981 ≈ 2,3:1 → non conforme, donc inversé. */
+.fillInBlank .exerciseBadge {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+[data-theme='dark'] .fillInBlank .exerciseBadge {
+  background: #34d399;
+  color: #064e3b;
+}
+
+.exerciseTitle {
+  font-size: var(--ex-title-size);
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+}
+
+.solvedBadge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #d1fae5;
+  color: #065f46;
+}
+
+[data-theme='dark'] .solvedBadge {
+  background: #34d399;
+  color: #064e3b;
+}
+
+/* --- Quiz --- */
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ex-space-md);
+}
+
+/* fieldset (Quiz) ou div : reset commun pour un rendu identique */
+.question {
+  margin: 0;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-background-color);
+}
+
+.questionCorrect {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+[data-theme='dark'] .questionCorrect {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.08);
+}
+
+.questionWrong {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+[data-theme='dark'] .questionWrong {
+  border-color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+}
+
+/* p (ancien markup) ou legend (fieldset Quiz) : reset commun */
+.questionText {
+  padding: 0;
+  font-size: var(--ex-body-size);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.option:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+/* Le focus clavier arrive sur l'input natif : anneau visible sur le label */
+.option:focus-within {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-lightest);
+}
+
+/* Après soumission : curseur neutre, hover désamorcé, sélections lisibles */
+.isSubmitted .option {
+  cursor: default;
+}
+
+.isSubmitted .option:hover {
+  border-color: var(--ifm-color-emphasis-200);
+}
+
+.isSubmitted .optionSelected:not(.optionCorrect):not(.optionWrong) {
+  opacity: 0.75;
+}
+
+.optionSelected {
+  border-color: var(--ifm-color-primary);
+  background: rgba(30, 64, 175, 0.05);
+}
+
+[data-theme='dark'] .optionSelected {
+  background: rgba(142, 166, 255, 0.1);
+}
+
+.optionCorrect {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+[data-theme='dark'] .optionCorrect {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.optionWrong {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+[data-theme='dark'] .optionWrong {
+  border-color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.optionInput {
+  margin-top: 0.2rem;
+  accent-color: var(--ifm-color-primary);
+}
+
+.optionLabel {
+  font-size: var(--ex-body-size);
+  line-height: 1.4;
+}
+
+.feedback {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-size: var(--ex-body-size);
+  line-height: 1.5;
+}
+
+.feedbackCorrect {
+  background: rgba(16, 185, 129, 0.1);
+  color: #065f46;
+}
+
+[data-theme='dark'] .feedbackCorrect {
+  background: rgba(52, 211, 153, 0.15);
+  color: #6ee7b7;
+}
+
+.feedbackWrong {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+}
+
+[data-theme='dark'] .feedbackWrong {
+  background: rgba(248, 113, 113, 0.15);
+  color: #fca5a5;
+}
+
+/* --- FillInBlank --- */
+
+.hint {
+  font-size: var(--ex-body-size);
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.blanksContainer {
+  font-size: 1rem;
+  line-height: 2.2;
+  margin-bottom: var(--ex-space-md);
+}
+
+.blankGroup {
+  display: inline;
+}
+
+.blankBefore,
+.blankAfter {
+  white-space: pre-wrap;
+}
+
+.blankInput {
+  display: inline-block;
+  min-width: 8rem;
+  max-width: 14rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.25rem;
+  border: 2px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  text-align: center;
+  transition: border-color 0.15s ease;
+}
+
+.blankInput:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-lightest);
+}
+
+/* Input désactivé après soumission : texte conservé à pleine opacité,
+   seul le contour signale l'état (correct/erreur) */
+.blankInput:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.blankCorrect {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+[data-theme='dark'] .blankCorrect {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.blankWrong {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+[data-theme='dark'] .blankWrong {
+  border-color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+/* --- Actions --- */
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Convention boutons d'exercice : variante Infima + cible tactile 44px */
+.actionsButton {
+  min-width: 10rem;
+  min-height: 44px;
+  font-weight: 700;
+}
+
+.actionsButton:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* --- Signalement --- */
+
+/* Discret, aligné à droite : c'est une action de secours, pas le parcours. */
+.reportRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}

@@ -12,7 +12,10 @@ import styles from './styles.module.css';
  */
 function AlgoExample(): ReactNode {
   return (
-    <div className={styles.algoBlock} aria-label="Exemple d'algorithme">
+    <div
+      className={styles.algoBlock}
+      role="img"
+      aria-label="Exemple d'algorithme">
       <div className={styles.algoHeader}>
         <span className={styles.algoDot} />
         <span className={styles.algoDot} />

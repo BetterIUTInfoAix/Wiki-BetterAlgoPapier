@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Découper avec des fonctions
 description: fonction, procedure et les marqueurs in/out/in_out enfin clairs.
+format: mdx
 ---
 
 # Découper avec des fonctions
@@ -143,3 +144,50 @@ fin
 </details>
 
 **Prochaine étape :** [Installer l’extension](/extension/installation) — pour écrire tout ça avec coloration et snippets.
+
+<Quiz
+  id="fonctions-qcm-1"
+  title="Qui a le droit de toucher à quoi"
+  questions={[
+    {
+      question: "Ta procédure fait `c <- c + 1;`. Quel marqueur pour `c` ?",
+      options: ["`in`", "`out`", "`in_out`"],
+      correctAnswers: [2],
+      explanation:
+        "`in` est un cahier sous plastique : on lit, on ne modifie pas. Pour modifier la vraie boîte, il faut `in_out`.",
+    },
+    {
+      question: "Qu'est-ce qui distingue une `fonction` d'une `procedure` ?",
+      options: [
+        "La fonction est plus courte",
+        "La fonction renvoie un résultat avec `renvoie`, la procedure non",
+        "La procedure ne peut pas afficher",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "Une fonction **calcule** et rend quelque chose ; une procedure **fait** (afficher, saisir) sans rendre. Une procedure n'a jamais de `renvoie`.",
+    },
+    {
+      question: "Une fonction `est_pair` qui renvoie un `booleen`, comment on l'appelle ?",
+      options: [
+        "Un prédicat",
+        "Une variable globale",
+        "Un bloc à replier",
+      ],
+      correctAnswers: [0],
+      explanation:
+        "Une fonction qui renvoie un `booleen` est un **prédicat** : son nom se lit comme une question fermée (`isMultiple`, `hasValue`…).",
+    },
+    {
+      question: "Une procédure a un paramètre `out` mais ne lui donne jamais de valeur. Quel est le risque ?",
+      options: [
+        "Aucun, l'appelant s'en fiche",
+        "L'appelant récupère une case jamais remplie, une donnée sortante corrompue",
+        "Le programme ne compile plus",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "Règle impérative : tout `out` doit être rempli dans le sous-programme, sinon c'est rendre un cahier vide en prétendant l'avoir rempli.",
+    },
+  ]}
+/>

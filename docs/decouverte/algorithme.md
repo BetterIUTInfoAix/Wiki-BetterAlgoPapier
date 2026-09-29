@@ -2,6 +2,7 @@
 sidebar_position: 2
 title: Ton premier algorithme
 description: Le squelette algorithme/debut/fin et ton premier afficher.
+format: mdx
 ---
 
 # Ton premier algorithme
@@ -87,3 +88,31 @@ fin
 </details>
 
 **Prochaine étape :** [Lire au clavier avec saisir](/decouverte/entrees-sorties).
+
+<FillInBlank
+  id="algorithme-fillblank-1"
+  title="Le moule par cœur"
+  blanks={[
+    {
+      before: "Un programme s'écrit toujours entre trois lignes de moule :",
+      accepted: ["algorithme"],
+      after: " nom_du_programme",
+    },
+    {
+      before: "",
+      accepted: ["debut"],
+      after: " … ",
+    },
+    {
+      before: "",
+      accepted: ["fin"],
+      after: ". Les trois lignes de moule ne prennent **jamais** de point-virgule.",
+    },
+    {
+      before: "La seule ligne d'action du minimum vital est ",
+      accepted: ['afficher ("Bonjour");', 'afficher ("Bonjour")'],
+      after: ".",
+    },
+  ]}
+  hint="Indice : trois lignes, la première nomme, les deux autres encadrent."
+/>

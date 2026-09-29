@@ -50,3 +50,22 @@
 code[class*='language-algo'] {
   white-space: pre;
 }
+
+/* Défilement doux global (bouton Suivant des exercices, ancres, sommaire…) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accessibilité : désamorce transitions/animations si l'utilisateur
+   demande la réduction des mouvements (cards, options d'exercice…) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

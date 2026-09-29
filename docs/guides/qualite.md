@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Écrire du code qui ne tue personne
 description: Fiabilité, règles NASA et bonne posture face à l'IA.
+format: mdx
 ---
 
 # Écrire du code qui ne tue personne
@@ -52,3 +53,47 @@ Cite une règle NASA pertinente dans ta copie (« boucle bornée, règle n°2 »
 :::
 
 **Pour finir :** relis ton [Parcours](/intro) et repère le chapitre où tu es encore fragile — c’est lui, ta prochaine heure de travail.
+
+<Quiz
+  id="qualite-qcm-1"
+  title="Les règles NASA, version L1"
+  multiple
+  questions={[
+    {
+      question: "Quelles règles appliques-tu dès ton prochain TD ? (la page dit : les n°2, 4, 6 et 10)",
+      options: [
+        "Toute boucle a une borne",
+        "Fonctions courtes",
+        "Données au plus près",
+        "Zéro avertissement",
+        "Pas de flux tordus (pas de `goto`)",
+      ],
+      correctAnswers: [0, 1, 2, 3],
+      explanation:
+        "Tu n'appliqueras pas les 10 demain — mais les n°2, 4, 6 et 10 sont accessibles dès maintenant. La n°5 (pas de `goto`) est singled out dans la liste.",
+    },
+    {
+      question: "Un `si` dans une extension plante « il fait les deux chemins ». Lequel des cinq pièges est-ce ?",
+      options: [
+        "Le `;` oublié",
+        "`<-` confondu avec `vaut`",
+        "Le bloc jamais fermé",
+        "Le mauvais marqueur",
+        "La boucle qui ne s'arrête jamais",
+      ],
+      correctAnswers: [2],
+      explanation:
+        "Erreur n°3 : un `si` sans `fsi`, un `pour` sans `ffaire`… celui qui ne se plie pas dans l'éditeur est celui qui manque sa fin.",
+    },
+    {
+      question: "L'IA te propose un algo qui compile mais dont tu ne comprends pas une ligne. Tu rends ?",
+      options: [
+        "Oui, il compile donc il est correct",
+        "Non : si tu ne peux pas le tracer dans un tableau, tu ne le comprends pas — donc tu ne le rends pas",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "L'IA assiste, tu valides. Un code syntaxiquement correct mais sémantiquement aberrant est exactement le piège de la dette cognitive.",
+    },
+  ]}
+/>

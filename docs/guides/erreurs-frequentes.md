@@ -2,6 +2,7 @@
 sidebar_position: 2
 title: Les erreurs de tout le monde
 description: Les 5 pièges classiques et comment les repérer seul.
+format: mdx
 ---
 
 # Les erreurs de tout le monde
@@ -52,3 +53,43 @@ On teste `age` mais on ne le modifie jamais dans le corps : si `age` vaut 0 au d
 :::tip[Règle d’or du débogage]
 Un seul suspect à la fois : affiche tes variables avec `afficher` juste avant l’endroit bizarre. Ce que montre l’écran tranche entre « la valeur est fausse » et « le test est faux ».
 :::
+
+<Quiz
+  id="erreurs-frequentes-qcm-1"
+  title="C'est laquelle, l'erreur ?"
+  questions={[
+    {
+      question: "`si (x <- 10)` — qu'est-ce qui ne va pas ?",
+      options: [
+        "`<-` ne peut pas être utilisé dans un `si`",
+        "Dans un `si`, on **compare** : il faut écrire `si (x vaut 10)`",
+        "Il manque un `fsi`",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "Erreur n°2 : tu **ranges** 10 dans `x` au lieu de **demander** si `x` vaut 10. Relis à voix haute : « si x prend 10 » ne veut rien dire.",
+    },
+    {
+      question: "Ton programme affiche « Admis » puis « Recalé » dans le même `si/sinon`. Cause ?",
+      options: [
+        "Le `fsi` est oublié : les deux blocs s'exécutent",
+        "La condition est mal écrite",
+        "`afficher` ne marche pas deux fois de suite",
+      ],
+      correctAnswers: [0],
+      explanation:
+        "Erreur n°3, le bloc jamais fermé. Réflexe : dans l'extension, replie les blocs un par un — celui qui ne se plie pas est celui qui manque sa fin.",
+    },
+    {
+      question: "`tant_que (age vaut 0)` affiche « Donne ton âge » en boucle infinie. Pourquoi ?",
+      options: [
+        "`tant_que` est maladif",
+        "On teste `age` mais on ne le modifie jamais dans le corps : le `saisir (age);` manque",
+        "Il faut un `fsi` autour",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "Erreur n°5 : dans une `tant_que`, la variable testée **doit** changer dans le corps. Trace deux tours dans un tableau et tu le verras tout de suite.",
+    },
+  ]}
+/>

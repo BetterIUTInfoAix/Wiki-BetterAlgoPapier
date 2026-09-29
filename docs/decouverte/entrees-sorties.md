@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Afficher et saisir
 description: "Dialoguer avec l’utilisateur : afficher, saisir, ligne_suivante."
+format: mdx
 ---
 
 # Afficher et saisir
@@ -101,3 +102,39 @@ fin
 </details>
 
 **Prochaine étape :** [Déclarer des variables](/decouverte/variables) — pour comprendre ces lignes `declarer` que tu as admises.
+
+<Quiz
+  id="entrees-sorties-qcm-1"
+  title="Parler, écouter, ne pas faire confiance"
+  questions={[
+    {
+      question: "Quelle instruction attend que l'utilisateur tape une réponse ?",
+      options: ["`afficher`", "`saisir`", "`ligne_suivante`"],
+      correctAnswers: [1],
+      explanation:
+        "`afficher` montre, `saisir` attend et range la réponse dans la variable indiquée, `ligne_suivante;` force un retour à la ligne.",
+    },
+    {
+      question: "NTUI, ça veut dire…",
+      options: [
+        "Ne Tapis Une Information",
+        "**Never Trust User Input** : toute saisie est à vérifier avant de l'utiliser",
+        "Ne Tracker Un Utilisateur",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "L'utilisateur peut taper une lettre quand tu attends un nombre. Le motif de la page : saisir, tester, re-saisir tant que c'est invalide.",
+    },
+    {
+      question: "Tu veux afficher du texte qui **contient** des guillemets. Quelle règle appliquer ?",
+      options: [
+        "Les doubles quotes pour une phrase, les simples quotes pour un seul caractère",
+        "Les guillemets se protègent avec un antislash : un guillemet affiché s'écrit antislash + guillemet",
+        "Un string ne peut pas contenir de guillemet",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "C'est le troisième super-pouvoir du `string` : `\"` affiche un vrai guillemet. Retiens aussi : doubles quotes pour une phrase, simples quotes pour un seul caractère.",
+    },
+  ]}
+/>

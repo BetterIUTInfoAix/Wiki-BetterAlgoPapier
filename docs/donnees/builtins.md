@@ -2,6 +2,7 @@
 sidebar_position: 2
 title: Boîte à outils
 description: "Référence des fonctions intégrées : E/S, tableaux, aléatoire, caractères."
+format: mdx
 ---
 
 # Boîte à outils
@@ -96,3 +97,36 @@ afficher (d1 + d2);
 </details>
 
 **Prochaine étape :** [Découper avec des fonctions](/routines/fonctions) — pour ranger tout ce savoir dans des routines propres.
+
+<FillInBlank
+  id="builtins-fillblank-1"
+  title="Le bon nom de fonction"
+  blanks={[
+    {
+      before: "Pour obtenir un entier au hasard entre 1 et 6 inclus : d <- ",
+      accepted: ["rand (1, 6)", "rand (1, 6);", "rand(1,6)"],
+      after: ";",
+    },
+    {
+      before: "Pour connaître le reste de la division de 17 par 5 : ",
+      accepted: ["modulo (17, 5)"],
+      after: " vaut 2.",
+    },
+    {
+      before: "Pour savoir si un caractère saisi est un chiffre, on teste ",
+      accepted: ["isdigit"],
+      after: ".",
+    },
+    {
+      before: "Pour connaître le nombre de cases d'un tableau t : ",
+      accepted: ["taille"],
+      after: ".",
+    },
+    {
+      before: "Un `string` se lit caractère par caractère comme un tableau, donc on peut lui appliquer ",
+      accepted: ["taille", "taille()"],
+      after: " aussi.",
+    },
+  ]}
+  hint="Indice : « il doit bien exister un truc pour… » — cherche dans la page avant de coder."
+/>

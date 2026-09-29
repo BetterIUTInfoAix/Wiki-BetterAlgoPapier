@@ -1,0 +1,10 @@
+/**
+ * Rangée du lien « Signaler une erreur », sous le footer de la page.
+ * Discrète et alignée à droite, comme dans les exercices.
+ */
+
+.reportRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
