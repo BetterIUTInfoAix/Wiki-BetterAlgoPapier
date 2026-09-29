@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import type {FillInBlankConfig} from './types';
 import {renderInline} from './Inline';
 import {goToNextExercise} from './navigate';
+import ReportIssue from '@site/src/components/ReportIssue';
 import styles from './styles.module.css';
 
 /**
@@ -96,6 +97,18 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
       b.accepted.some((a) => normalize(values[idx] ?? '') === normalize(a)),
     );
 
+  // Contexte du signalement : l'énoncé reconstitué, puis ce que l'élève a
+  // tapé dans chaque trou.
+  const statement = blanks
+    .map((b) => `${b.before}[…]${b.after}`)
+    .join('  ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const answerSummary = Object.values(values)
+    .map((v) => v.trim())
+    .filter((v) => v !== '')
+    .join(' | ');
+
   return (
     <div
       ref={rootRef}
@@ -180,6 +193,16 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
             )}
           </>
         )}
+      </div>
+
+      <div className={styles.reportRow}>
+        <ReportIssue
+          kind="quiz"
+          pageTitle={title}
+          exerciseId={id}
+          question={statement}
+          userAnswer={answerSummary}
+        />
       </div>
     </div>
   );

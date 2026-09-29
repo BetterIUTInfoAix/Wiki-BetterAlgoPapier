@@ -1,0 +1,59 @@
+name: Signalement de QCM
+description: Question mal formulée, mauvaise réponse ou explication incorrecte dans un exercice interactif.
+title: '[QCM] '
+labels: ['signalement', 'qcm']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci ! Le contexte ci-dessous a été rempli automatiquement depuis la page.
+
+        Ne modifie que ce qui est faux. Si une réponse est mauvaise, écris à quoi
+        elle devrait être remplacée. Supprime les champs inutiles.
+  - type: input
+    id: page
+    attributes:
+      label: Page du wiki
+      description: Rempli automatiquement, mais corrige-le si besoin.
+    validations:
+      required: false
+  - type: input
+    id: exercice
+    attributes:
+      label: Identifiant de l'exercice
+      description: Rempli automatiquement. On le retrouve dans le code de la page.
+    validations:
+      required: false
+  - type: textarea
+    id: question
+    attributes:
+      label: Question signalée
+      description: Rempli automatiquement avec l'énoncé tel que l'élève l'a vu.
+    validations:
+      required: true
+  - type: input
+    id: ma-reponse
+    attributes:
+      label: Réponse donnée par l'élève
+      description: Rempli automatiquement si l'élève a validé avant de signaler.
+    validations:
+      required: false
+  - type: dropdown
+    id: quoi
+    attributes:
+      label: Nature du problème
+      options:
+        - La bonne réponse est fausse
+        - La question est ambiguë (plusieurs réponses défendables)
+        - L'explication est incorrecte
+        - Problème d'affichage ou de mise en forme
+        - Autre
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Détail (facultatif)
+      description: Tout ce qui t'a fait tromper, avec tes mots.
+    validations:
+      required: false

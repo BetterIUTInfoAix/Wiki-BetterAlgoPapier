@@ -1,0 +1,39 @@
+name: Signalement sur une page
+description: Faute de syntaxe, explication fausse, lien cassé ou texte à corriger dans une page de cours.
+title: '[Wiki] '
+labels: ['signalement', 'wiki']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci ! L'adresse de la page ci-dessous est remplie automatiquement.
+
+        Ne modifie que ce qui est faux. Si tu peux, propose la formulation
+        correcte — c'est ce qui fait gagner le plus de temps.
+  - type: input
+    id: page
+    attributes:
+      label: Page du wiki
+      description: Rempli automatiquement, mais corrige-le si besoin.
+    validations:
+      required: false
+  - type: dropdown
+    id: quoi
+    attributes:
+      label: Nature du problème
+      options:
+        - Faute de syntaxe dans un bloc ```algo
+        - Explication fausse ou trompeuse
+        - Contredit l'extension ou le cours
+        - Lien cassé
+        - Coquille, faute d'orthographe ou de typographie
+        - Autre
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Ce qui ne va pas
+      description: Cite la phrase exacte si possible, et la version corrigée si tu l'as.
+    validations:
+      required: true

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import type {QuizConfig} from './types';
 import {renderInline} from './Inline';
 import {goToNextExercise} from './navigate';
+import ReportIssue from '@site/src/components/ReportIssue';
 import styles from './styles.module.css';
 
 /**
@@ -93,6 +94,19 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
   const allAnswered = questions.every(
     (_, idx) => (answers[idx] ?? []).length > 0,
   );
+
+  // Contexte du signalement : les options que l'élève a retenues, question
+  // par question. C'est ce qui permet de distinguer « la réponse est fausse »
+  // d'une question ambiguë.
+  const answerSummary = questions
+    .map((q, idx) => {
+      const picked = (answers[idx] ?? []).map((oIdx) => q.options[oIdx] ?? '');
+      return picked.length > 0 ? picked.join(' / ') : null;
+    })
+    .filter((line): line is string => line !== null)
+    .join('  ||  ');
+
+  const questionSummary = questions.map((q) => q.question).join('  ||  ');
 
   return (
     <div
@@ -205,6 +219,16 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
             )}
           </>
         )}
+      </div>
+
+      <div className={styles.reportRow}>
+        <ReportIssue
+          kind="quiz"
+          pageTitle={title}
+          exerciseId={id}
+          question={questionSummary}
+          userAnswer={answerSummary}
+        />
       </div>
     </div>
   );

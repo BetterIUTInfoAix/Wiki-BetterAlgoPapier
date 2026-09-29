@@ -92,7 +92,7 @@ Les textes des exercices (`question`, `options`, `explanation`, `before`, `after
 | `**du gras**` | du gras |
 
 ```mdx
-question: "Quel type pour storing un nombre entier ?"   // rendu simple
+question: "Quel type pour un nombre entier ?"          // rendu simple
 explanation: "**Attention** : on écrit `declarer nom : type;`"  // rendu formaté
 ```
 
@@ -104,14 +104,45 @@ Conséquence pratique : on écrit `age <- 19;` directement dans la chaîne, sans
 échapper le `<`. Si une chaîne contient une apostrophe ou un guillemet, utilise
 les guillemets doubles pour l'encadrer.
 
+## Signaler une erreur
+
+Chaque exercice et chaque page de cours ont un lien **Signaler**. Il ouvre un
+formulaire d'issue GitHub (`src/components/ReportIssue/`) avec le contexte déjà
+rempli : page, exercice, énoncé, et pour un QCM les réponses que l'élève a
+retenues. Le site n'envoie rien — c'est l'élève qui valide dans l'éditeur
+GitHub, donc rien n'est stocké côté wiki.
+
+Les deux formulaires sont des *issue forms*, dans
+`.github/ISSUE_TEMPLATE/` :
+
+| Fichier | Pour | Labels |
+|---|---|---|
+| `qcm.yml` | un exercice interactif | `signalement`, `qcm` |
+| `wiki.yml` | une page de cours | `signalement`, `wiki` |
+
+**Contrainte à respecter** : le pré-remplissage passe par les query params qui
+portent l'`id` d'un champ du formulaire. Si tu renommes un `id:` dans le YAML,
+le champ correspondant ne se remplira plus automatiquement.
+
+### Triage
+
+- `La bonne réponse est fausse` → corriger l'index dans `correctAnswers`.
+- `La question est ambiguë` → plusieurs options se défendent : c'est presque
+  toujours un `correctAnswers` trop large. Les réponses répétées dans
+  `ma-reponse` sont le signal : si tout le monde choisit la même, c'est l'option
+  qui est mal conçue, pas l'élève.
+- Fermer avec `duplicate` si le signalement existe déjà.
+
 ## Structure du projet
 
 ```
 docs/           → Pages de cours (.md ou .mdx)
+.github/
+  ISSUE_TEMPLATE/ → Formulaires d'issue (signalements élèves)
 src/
-  components/   → Composants React (Landing*, Exercises/)
+  components/   → Composants React (Landing*, Exercises/, ReportIssue/)
   pages/        → Pages React (index.tsx = landing)
-  theme/        → Swizzles Docusaurus (MDXComponents, prism-include-languages)
+  theme/        → Swizzles Docusaurus (MDXComponents, DocItem/Footer, prism-include-languages)
   css/          → Thème global (custom.css)
 ```
 

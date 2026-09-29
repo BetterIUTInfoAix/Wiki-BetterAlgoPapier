@@ -330,3 +330,14 @@
   outline: 2px solid var(--ifm-color-primary);
   outline-offset: 2px;
 }
+
+/* --- Signalement --- */
+
+/* Discret, aligné à droite : c'est une action de secours, pas le parcours. */
+.reportRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
