@@ -9,6 +9,16 @@ Ce dépôt ne contient que le **wiki**. L'extension VSCode
 [BetterAlgoPapier](https://github.com/BetterIUTInfoAix/BetterAlgoPapier) est
 versionnée séparément.
 
+## [Non publié]
+
+### Retiré
+
+- Page `/exercices-demo` (« Démo exercices interactifs »). C'était un
+  échafaudage de développement : elle apparaissait dans le menu latéral comme
+  si elle était un cours, à côté des 16 vraies pages. L'API des composants est
+  documentée dans `CONTRIBUTING.md`, qui couvre le QCM simple, le QCM à choix
+  multiple, le texte à trous et la convention des `id`.
+
 ## [1.0.0] — 2026-09-29
 
 Première version stable : le parcours pédagogique complet, les exercices
