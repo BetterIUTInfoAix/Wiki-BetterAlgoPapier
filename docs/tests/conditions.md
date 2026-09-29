@@ -2,6 +2,7 @@
 sidebar_position: 2
 title: Choisir avec si
 description: si/sinon/fsi et choix_sur pour prendre des décisions.
+format: mdx
 ---
 
 # Choisir avec si
@@ -116,3 +117,35 @@ fchoix
 </details>
 
 **Prochaine étape :** [Répéter avec des boucles](/boucles) — parce qu’écrire 100 `afficher` à la main, très peu pour toi.
+
+<Quiz
+  id="conditions-qcm-1"
+  title="Quel chemin prend le programme ?"
+  questions={[
+    {
+      question: "`moyenne` vaut 8. Qu'affiche le `si (moyenne >= 10) / sinon / fsi` de la page ?",
+      options: ["Admis", "Recalé", "Rien du tout", "Les deux : Admis puis Recalé"],
+      correctAnswers: [1],
+      explanation:
+        "8 >= 10 est faux : on saute le premier bloc et on exécute le `sinon`. Un seul chemin s'exécute, jamais les deux.",
+    },
+    {
+      question: "Ton programme affiche « Admis » **puis** « Recalé ». Quel est le bug le plus probable ?",
+      options: [
+        "Le `fsi` a été oublié, les deux blocs s'exécutent",
+        "La condition est mal écrite",
+        "`moyenne` n'est pas de type `reel`",
+      ],
+      correctAnswers: [0],
+      explanation:
+        "« Les deux chemins qui passent », c'est le `fsi` oublié — 9 fois sur 10, comme le dit le piège Casali.",
+    },
+    {
+      question: "`jour` vaut 3 et tu utilises le `choix_sur (jour)` de la page. Quel cas s'exécute ?",
+      options: ["`cas 1`", "`cas 2`", "`autre`", "Les deux `cas 2` et `autre`"],
+      correctAnswers: [2],
+      explanation:
+        "3 ne vaut ni 1 ni 2 : on tombe sur `autre`, donc l'affichage est « Autre jour ».",
+    },
+  ]}
+/>

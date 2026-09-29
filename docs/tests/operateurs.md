@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Comparer
 description: vaut, ne_vaut_pas et la logique ET/OU/NON pour poser des questions.
+format: mdx
 ---
 
 # Comparer
@@ -98,3 +99,35 @@ x >= 10 ET x <= 20
 </details>
 
 **Prochaine étape :** [Choisir avec si](/tests/conditions) — tes questions vont enfin servir.
+
+<Quiz
+  id="operateurs-qcm-1"
+  title="Vérifie tes réflexes"
+  questions={[
+    {
+      question: "Tu veux **ranger** la valeur 19 dans la variable `age`. Quelle ligne est correcte ?",
+      options: ["age vaut 19", "age <- 19;", "age = 19", "age == 19"],
+      correctAnswers: [1],
+      explanation:
+        "`<-` range, `vaut` compare, `=` seul ne fait ni l'un ni l'autre, et `==` n'existe pas en algo papier. Voir le piège Casali plus haut.",
+    },
+    {
+      question: "`age` vaut 19. Que vaut `age vaut 18 OU age vaut 19` ?",
+      options: ["vrai", "faux", "faux OU faux, donc faux"],
+      correctAnswers: [0],
+      explanation:
+        "Un seul `OU` vrai suffit : `faux OU vrai` donne vrai. Voir le tableau d'évaluation pas à pas.",
+    },
+    {
+      question: "`fichier_existe (nom)` vaut faux. Dans `si (fichier_existe (nom) ET_ALORS date_valide (nom))`, que se passe-t-il ?",
+      options: [
+        "`date_valide` est évaluée puis le si est faux",
+        "Le test s'arrête sur le faux : `date_valide` n'est jamais évaluée",
+        "Le programme plante en lisant un fichier fantôme",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "C'est tout l'intérêt du court-circuit : le test de garde d'abord, l'accès ensuite. Avec un `ET` classique, la machine lirait la date d'un fichier inexistant.",
+    },
+  ]}
+/>

@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Répéter sans copier-coller
 description: pour, tant_que, repeter et boucle — avec tableaux d’exécution.
+format: mdx
 ---
 
 # Répéter sans copier-coller
@@ -170,3 +171,43 @@ jusqua (mdp vaut "casali")
 </details>
 
 **Prochaine étape :** [Stocker des séries](/donnees/tableaux) — les boucles et les tableaux sont inséparables.
+
+<Quiz
+  id="boucles-qcm-1"
+  title="Choisir la bonne boucle"
+  questions={[
+    {
+      question: "Tu veux afficher les nombres pairs de 2 à 20. Quelle boucle ?",
+      options: [
+        "Un `pour` de 1 à 10 qui affiche `i * 2`",
+        "Un `pour` de 2 à 20 avec un `si` pour sauter les impairs",
+        "Un `tant_que` tant que i vaut moins que 20",
+      ],
+      correctAnswers: [0],
+      explanation:
+        "Le `pour` à compteur est fait pour ça : on connaît déjà le nombre de tours. `i * 2` fait la multiplication, pas un saut d'itération.",
+    },
+    {
+      question: "Pourquoi `sortie` est-il interdit dans un `pour` ?",
+      options: [
+        "Parce que `sortie` n'existe que dans `boucle`",
+        "Parce que la variable de parcours doit visiter chaque valeur, sans rupture",
+        "Parce que `sortie` est plus lent qu'un `si`",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "Règle non négociable du CM : le `pour` reste prévisible, c'est ce qui permet d'optimiser. Besoin de sortir en cours de route ? Prends `tant_que` ou `boucle`.",
+    },
+    {
+      question: "Tu veux redemander l'âge tant que l'utilisateur donne un nombre négatif. Quelle boucle, et que manque-t-il dans le corps ?",
+      options: [
+        "`tant_que (age <= 0)` — il manque le `saisir (age);` qui change `age`",
+        "`pour` de 1 à 10 — il manque un `i * 2`",
+        "`repeter ... jusqua` — il manque un `afficher`",
+      ],
+      correctAnswers: [0],
+      explanation:
+        "La boucle infinie accidentelle : dans une `tant_que`, la variable testée **doit** changer dans le corps. Sinon ça tourne pour toujours.",
+    },
+  ]}
+/>

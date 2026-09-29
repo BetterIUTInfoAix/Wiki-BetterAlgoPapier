@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Attaquer un énoncé sans paniquer
 description: Une méthode en 6 étapes pour passer du sujet au programme.
+format: mdx
 ---
 
 # Attaquer un énoncé sans paniquer
@@ -54,3 +55,43 @@ Reviens une étape en arrière : 90 % des blocages viennent d’une variable mal
 :::
 
 **Ensuite :** [les erreurs que tout le monde fait](/guides/erreurs-frequentes) — pour les reconnaître avant la correction.
+
+<Quiz
+  id="methode-qcm-1"
+  title="L'ordre compte"
+  questions={[
+    {
+      question: "Tu as un énoncé sous les yeux et tu ne sais pas par où commencer. Quelle est la première étape ?",
+      options: [
+        "Écrire direct le code, la syntaxe viendra",
+        "Relire l'énoncé deux fois et isoler entrées, sortie et cas particuliers",
+        "Chercher un programme similaire sur internet",
+      ],
+      correctAnswers: [1],
+      explanation:
+        "Étape 1 de la méthode. 90 % des blocages viennent d'un énoncé mal lu ou d'une variable mal choisie, pas de la syntaxe.",
+    },
+    {
+      question: "Pourquoi déclarer toutes les variables tout en haut, avant le `debut` logique ?",
+      options: [
+        "Parce que le compilateur l'impose",
+        "Parce que ça réduit le nombre de lignes",
+        "Pour avoir la liste complète : nom, type, rôle — et les repérer d'un coup d'œil",
+      ],
+      correctAnswers: [2],
+      explanation:
+        "Étape 2 : la liste des variables est un document de conception. C'est aussi là que tu attrapes les variables jamais utilisées ou jamais déclarées.",
+    },
+    {
+      question: "Tu bloques depuis 10 minutes sur un énoncé. Que faire ?",
+      options: [
+        "Revenir une étape en arrière — le plus souvent c'est l'énoncé ou le choix des variables",
+        "Attendre la correction pour comprendre",
+        "Rajouter des `afficher` au hasard partout",
+      ],
+      correctAnswers: [0],
+      explanation:
+        "Revenir d'un cran coûte moins cher que d'accumuler du code faux. Et la règle d'or du débogage : un seul suspect à la fois.",
+    },
+  ]}
+/>

@@ -2,6 +2,7 @@
 sidebar_position: 4
 title: Variables
 description: Ranger des valeurs dans des boîtes typées avec declarer et <-.
+format: mdx
 ---
 
 # Variables
@@ -108,3 +109,31 @@ b <- tmp;
 </details>
 
 **Prochaine étape :** [Comparer des valeurs](/tests/operateurs) — pour enfin utiliser ces variables dans des décisions.
+
+<FillInBlank
+  id="variables-fillblank-1"
+  title="La syntaxe exacte"
+  blanks={[
+    {
+      before: "Pour déclarer une variable entière nommée age : declarer ",
+      accepted: ["age"],
+      after: " : ",
+    },
+    {
+      before: "",
+      accepted: ["entier"],
+      after: ";",
+    },
+    {
+      before: "Pour lui donner la valeur 19 : age ",
+      accepted: ["<-"],
+      after: " 19;",
+    },
+    {
+      before: "Une constante se déclare avec le préfixe ",
+      accepted: ["K"],
+      after: " : declarer KMAJEUR : entier <- 18;",
+    },
+  ]}
+  hint="Indice : une flèche, deux places. Le type se déclare avant de ranger quoi que ce soit."
+/>

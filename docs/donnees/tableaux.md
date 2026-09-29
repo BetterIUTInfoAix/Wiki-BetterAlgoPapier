@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Stocker des séries
 description: tableau_de, taille et redimensionner, main dans la main avec pour.
+format: mdx
 ---
 
 # Stocker des séries
@@ -98,3 +99,42 @@ afficher (taille (noms));
 </details>
 
 **Prochaine étape :** [Boîte à outils](/donnees/builtins) — les fonctions toutes prêtes qui te font gagner du temps.
+
+<FillInBlank
+  id="tableaux-fillblank-1"
+  title="Complète les trous"
+  blanks={[
+    {
+      before: "Pour déclarer un classeur de 30 cases entières nommé notes, on écrit : declarer notes : tableau_de ",
+      accepted: ["30", "trente"],
+      after: " ",
+    },
+    {
+      before: "",
+      accepted: ["entier"],
+      after: ";",
+    },
+    {
+      before: "Dans un tableau de 30 cases, la dernière case porte l'indice ",
+      accepted: ["29"],
+      after: " (c'est taille - 1).",
+    },
+    {
+      before: "Le nombre de cases s'obtient avec ",
+      accepted: ["taille"],
+      after: ".",
+    },
+    {
+      before: "Pour ajouter 5 cases vides à la fin d'un tableau t, on appelle ",
+      accepted: ["allonger", "allonger(t, 5)"],
+      after: " ; pour le remettre exactement à 60 cases, on appelle ",
+    },
+    {
+      before: "",
+      accepted: ["redimensionner", "redimensionner(t, 60)"],
+      after: ".",
+    },
+  ]}
+  hint="Indice : un indice commence à 0, et les deux outils de redimensionnement ne font pas la même chose."
+/>
+
