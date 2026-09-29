@@ -11,13 +11,19 @@ versionnée séparément.
 
 ## [Non publié]
 
+## [1.0.1] — 2026-09-29
+
+Correctif de contenu. Aucun changement d'API, aucun changement de
+comportement des exercices.
+
 ### Retiré
 
 - Page `/exercices-demo` (« Démo exercices interactifs »). C'était un
   échafaudage de développement : elle apparaissait dans le menu latéral comme
-  si elle était un cours, à côté des 16 vraies pages. L'API des composants est
-  documentée dans `CONTRIBUTING.md`, qui couvre le QCM simple, le QCM à choix
-  multiple, le texte à trous et la convention des `id`.
+  si elle était un cours, à côté des 16 vraies pages, et dans le sitemap
+  public. L'API des composants est documentée dans `CONTRIBUTING.md`, qui
+  couvre le QCM simple, le QCM à choix multiple, le texte à trous et la
+  convention des `id` — rien n'est perdu pour les contributeurs.
 
 ## [1.0.0] — 2026-09-29
 
