@@ -82,6 +82,28 @@ Les composants `<Quiz />` et `<FillInBlank />` sont disponibles globalement dans
 - **Réponses acceptées variées** — pour le texte à trous, accepte les variantes (casse, accents, espaces).
 - **Pas de dépendance externe** — tout est corrigé côté client.
 
+## Mise en forme dans un exercice
+
+Les textes des exercices (`question`, `options`, `explanation`, `before`, `after`, `hint`) acceptent deux constructions inline :
+
+| Écrit | Rendu |
+|---|---|
+| `` `du code` `` | du code en style inline |
+| `**du gras**` | du gras |
+
+```mdx
+question: "Quel type pour storing un nombre entier ?"   // rendu simple
+explanation: "**Attention** : on écrit `declarer nom : type;`"  // rendu formaté
+```
+
+Ce n'est **pas** du Markdown complet, et ce n'est pas du JSX : le `*` reste
+l'opérateur de multiplication de l'algo papier (`afficher (i * 2)`), donc
+l'italique `*texte*` n'est pas supporté — il trollerait les formules.
+
+Conséquence pratique : on écrit `age <- 19;` directement dans la chaîne, sans
+échapper le `<`. Si une chaîne contient une apostrophe ou un guillemet, utilise
+les guillemets doubles pour l'encadrer.
+
 ## Structure du projet
 
 ```
