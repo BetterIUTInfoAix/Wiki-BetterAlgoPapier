@@ -1,7 +1,8 @@
 import {useState, useEffect, useCallback, useRef} from 'react';
 import clsx from 'clsx';
 import type {FillInBlankConfig} from './types';
-import {scrollToNextExercise} from './scroll';
+import {renderInline} from './Inline';
+import {goToNextExercise} from './navigate';
 import styles from './styles.module.css';
 
 /**
@@ -41,11 +42,11 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
     }
   }, [storageKey]);
 
-  // Scroll manuel vers l'exercice suivant (bouton « Suivant »).
-  // Jamais automatique : pas de scroll au chargement, à la restauration
-  // « résolu » via localStorage, ni en cas d'échec.
+  // Navigation manuelle (bouton « Suivant ») : exercice suivant sur la page,
+  // sinon page suivante du parcours. Jamais automatique — ni au chargement,
+  // ni à la restauration « résolu » via localStorage, ni en cas d'échec.
   const handleGoNext = useCallback(() => {
-    scrollToNextExercise(rootRef.current);
+    goToNextExercise(rootRef.current);
   }, []);
 
   const handleChange = useCallback(
@@ -110,7 +111,7 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
         {solved && <span className={styles.solvedBadge}>Résolu</span>}
       </div>
 
-      {hint && <p className={styles.hint}>{hint}</p>}
+      {hint && <p className={styles.hint}>{renderInline(hint)}</p>}
 
       <div className={styles.blanksContainer}>
         {blanks.map((b, idx) => {
@@ -123,7 +124,7 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
 
           return (
             <span key={idx} className={styles.blankGroup}>
-              <span className={styles.blankBefore}>{b.before}</span>
+              <span className={styles.blankBefore}>{renderInline(b.before)}</span>
               <input
                 type="text"
                 value={userVal}
@@ -136,7 +137,7 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
                 )}
                 aria-label={`Trou ${idx + 1}${b.before ? ` après « ${b.before.trim().slice(-40)} »` : ''}`}
               />
-              <span className={styles.blankAfter}>{b.after}</span>
+              <span className={styles.blankAfter}>{renderInline(b.after)}</span>
             </span>
           );
         })}

@@ -1,7 +1,8 @@
 import {useState, useEffect, useCallback, useRef} from 'react';
 import clsx from 'clsx';
 import type {QuizConfig} from './types';
-import {scrollToNextExercise} from './scroll';
+import {renderInline} from './Inline';
+import {goToNextExercise} from './navigate';
 import styles from './styles.module.css';
 
 /**
@@ -30,11 +31,11 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
     }
   }, [storageKey]);
 
-  // Scroll manuel vers l'exercice suivant (bouton « Suivant »).
-  // Jamais automatique : pas de scroll au chargement, à la restauration
-  // « résolu » via localStorage, ni en cas d'échec.
+  // Navigation manuelle (bouton « Suivant ») : exercice suivant sur la page,
+  // sinon page suivante du parcours. Jamais automatique — ni au chargement,
+  // ni à la restauration « résolu » via localStorage, ni en cas d'échec.
   const handleGoNext = useCallback(() => {
-    scrollToNextExercise(rootRef.current);
+    goToNextExercise(rootRef.current);
   }, []);
 
   const handleSelect = useCallback(
@@ -126,7 +127,7 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
                 isWrong && styles.questionWrong,
               )}>
               <legend className={styles.questionText}>
-                <strong>{qIdx + 1}.</strong> {q.question}
+                <strong>{qIdx + 1}.</strong> {renderInline(q.question)}
               </legend>
 
               <div className={styles.options}>
@@ -156,7 +157,9 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
                         disabled={submitted}
                         className={styles.optionInput}
                       />
-                      <span className={styles.optionLabel}>{opt}</span>
+                      <span className={styles.optionLabel}>
+                        {renderInline(opt)}
+                      </span>
                     </label>
                   );
                 })}
@@ -170,7 +173,7 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
                     isCorrect ? styles.feedbackCorrect : styles.feedbackWrong,
                   )}>
                   <strong>{isCorrect ? 'Correct !' : 'Pas tout à fait.'}</strong>{' '}
-                  {q.explanation}
+                  {renderInline(q.explanation)}
                 </div>
               )}
             </fieldset>
