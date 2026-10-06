@@ -7,7 +7,7 @@ format: mdx
 
 # Les erreurs de tout le monde
 
-**L’idée en une phrase :** ces 5 erreurs, **tous** les débutants les font — les connaître, c’est les repérer en dix secondes au lieu de chercher une heure.
+**L’idée en une phrase :** ces 5 erreurs sont fréquentes chez les débutants — les reconnaître aide à orienter le débogage.
 
 :::info[Prérequis]
 Aucun : reviens ici chaque fois qu’un programme « ne marche pas ».
@@ -33,7 +33,7 @@ Ici tu **ranges** 10 dans `x` au lieu de **demander** si `x` vaut 10. Relis à v
 
 ## 3. Le bloc jamais fermé
 
-Un `si` sans `fsi`, un `pour` sans `ffaire`, un `choix_sur` sans `fchoix`… et le programme « fait les deux chemins ». Réflexe : dans l’extension, replie les blocs un par un — celui qui ne se plie pas est celui qui manque sa fin.
+Un `si` sans `fsi`, un `pour` sans `ffaire`, un `choix_sur` sans `fchoix`… et le bloc est incomplet. Réflexe : dans l’extension, replie les blocs un par un — celui qui ne se plie pas est celui qui manque sa fin.
 
 ## 4. Le mauvais marqueur
 
@@ -42,13 +42,17 @@ Ta procédure modifie une variable mais elle est déclarée `in` ? C’est comme
 ## 5. La boucle qui ne s’arrête jamais
 
 ```algo
-tant_que (age vaut 0)
-faire
-    afficher ("Donne ton âge");
-ffaire
+algorithme boucleInfinie
+debut
+    declarer age : entier;
+    age <- 0;
+    tant_que (age vaut 0) faire
+        afficher ("Donne ton âge");
+    ffaire
+fin
 ```
 
-On teste `age` mais on ne le modifie jamais dans le corps : si `age` vaut 0 au départ, ça tourne pour toujours. Il manque le `saisir (age);` dans la boucle. En cas de doute, trace deux tours dans un tableau ([chapitre 03](/boucles)).
+On initialise `age` à 0, puis on la teste sans jamais la modifier dans le corps : la boucle tourne pour toujours. Il manque le `saisir (age);` dans la boucle. En cas de doute, trace deux tours dans un tableau ([chapitre 03](/boucles)).
 
 :::tip[Règle d’or du débogage]
 Un seul suspect à la fois : affiche tes variables avec `afficher` juste avant l’endroit bizarre. Ce que montre l’écran tranche entre « la valeur est fausse » et « le test est faux ».
@@ -70,18 +74,18 @@ Un seul suspect à la fois : affiche tes variables avec `afficher` juste avant l
         "Erreur n°2 : tu **ranges** 10 dans `x` au lieu de **demander** si `x` vaut 10. Relis à voix haute : « si x prend 10 » ne veut rien dire.",
     },
     {
-      question: "Ton programme affiche « Admis » puis « Recalé » dans le même `si/sinon`. Cause ?",
+      question: "Tu constates qu'un bloc `si` n'a pas de `fsi`. Quelle erreur as-tu repérée ?",
       options: [
-        "Le `fsi` est oublié : les deux blocs s'exécutent",
-        "La condition est mal écrite",
-        "`afficher` ne marche pas deux fois de suite",
+        "Un bloc conditionnel incomplet",
+        "Une comparaison entre deux variables",
+        "Une variable qui n'a pas été déclarée",
       ],
       correctAnswers: [0],
       explanation:
-        "Erreur n°3, le bloc jamais fermé. Réflexe : dans l'extension, replie les blocs un par un — celui qui ne se plie pas est celui qui manque sa fin.",
+        "Un `si` doit se terminer par `fsi`. Sans ce marqueur, le bloc conditionnel est incomplet; cela ne permet pas de conclure que ses deux branches s'exécutent.",
     },
     {
-      question: "`tant_que (age vaut 0)` affiche « Donne ton âge » en boucle infinie. Pourquoi ?",
+      question: "Dans l'exemple, `age` vaut 0 et `tant_que (age vaut 0)` affiche « Donne ton âge » en boucle infinie. Pourquoi ?",
       options: [
         "`tant_que` est maladif",
         "On teste `age` mais on ne le modifie jamais dans le corps : le `saisir (age);` manque",

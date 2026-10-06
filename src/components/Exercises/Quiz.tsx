@@ -17,20 +17,79 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
   const [answers, setAnswers] = useState<Record<number, number[]>>({});
   const [submitted, setSubmitted] = useState(false);
   const [solved, setSolved] = useState(false);
+  const [storageReady, setStorageReady] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  // Charger le statut résolu depuis localStorage
+  // Restaurer les réponses avec leur état : un simple badge « résolu » ne
+  // suffit pas à reconstruire le feedback ni les choix affichés.
   useEffect(() => {
     try {
       const stored = localStorage.getItem(storageKey);
-      if (stored === 'solved') {
-        setSolved(true);
-        setSubmitted(true);
+      if (stored && stored !== 'solved') {
+        const parsed: unknown = JSON.parse(stored);
+        if (parsed && typeof parsed === 'object') {
+          const state = parsed as {
+            answers?: unknown;
+            submitted?: unknown;
+          };
+          if (state.answers && typeof state.answers === 'object') {
+            const savedAnswers = state.answers as Record<string, unknown>;
+            const restoredAnswers: Record<number, number[]> = {};
+            questions.forEach((question, questionIdx) => {
+              const selected = savedAnswers[String(questionIdx)];
+              if (
+                Array.isArray(selected) &&
+                selected.length === new Set(selected).size &&
+                (multiple || selected.length <= 1) &&
+                selected.every(
+                  (index) =>
+                    Number.isInteger(index) &&
+                    index >= 0 &&
+                    index < question.options.length,
+                )
+              ) {
+                restoredAnswers[questionIdx] = selected;
+              }
+            });
+            const hasAllAnswers = questions.every(
+              (_, idx) => (restoredAnswers[idx] ?? []).length > 0,
+            );
+            const wasSubmitted = state.submitted === true && hasAllAnswers;
+            const answersAreCorrect = questions.every((question, idx) => {
+              const selected = restoredAnswers[idx] ?? [];
+              return (
+                selected.length === question.correctAnswers.length &&
+                question.correctAnswers.every((index) => selected.includes(index))
+              );
+            });
+            setAnswers(restoredAnswers);
+            setSubmitted(wasSubmitted);
+            setSolved(wasSubmitted && answersAreCorrect);
+          }
+        }
+      } else if (stored === 'solved') {
+        // Ancien format : il ne contient pas les réponses, donc ne peut pas
+        // justifier un état résolu cohérent après rechargement.
+        localStorage.removeItem(storageKey);
       }
     } catch {
-      // localStorage indisponible — ignorer
+      // localStorage indisponible ou donnée invalide — démarrer vide
+    } finally {
+      setStorageReady(true);
     }
-  }, [storageKey]);
+  }, [storageKey, questions, multiple]);
+
+  useEffect(() => {
+    if (!storageReady) return;
+    try {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify({answers, submitted, solved}),
+      );
+    } catch {
+      // localStorage indisponible — l'exercice reste utilisable en mémoire
+    }
+  }, [answers, submitted, solved, storageKey, storageReady]);
 
   // Navigation manuelle (bouton « Suivant ») : exercice suivant sur la page,
   // sinon page suivante du parcours. Jamais automatique — ni au chargement,
@@ -70,15 +129,8 @@ export default function Quiz({id, title, questions, multiple = false}: QuizConfi
       );
     });
 
-    if (allCorrect) {
-      setSolved(true);
-      try {
-        localStorage.setItem(storageKey, 'solved');
-      } catch {
-        // localStorage indisponible — ignorer
-      }
-    }
-  }, [answers, questions, storageKey]);
+    setSolved(allCorrect);
+  }, [answers, questions]);
 
   const handleReset = useCallback(() => {
     setAnswers({});

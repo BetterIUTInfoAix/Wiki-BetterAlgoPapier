@@ -16,7 +16,7 @@ format: mdx
 ## Le minimum vital
 
 ```algo
-algorithme mon_premier
+algorithme monPremier
 debut
     afficher ("Bonjour");
 fin
@@ -30,7 +30,7 @@ On exécute ce programme ensemble, comme le ferait ton prof sur papier :
 
 | Étape | Ligne lue | Ce qui se passe |
 |---|---|---|
-| 1 | `algorithme mon_premier` | On donne un nom au programme |
+| 1 | `algorithme monPremier` | On donne un nom au programme |
 | 2 | `debut` | Le programme commence |
 | 3 | `afficher ("Bonjour");` | L’écran affiche : Bonjour |
 | 4 | `fin` | Le programme s’arrête |
@@ -42,7 +42,7 @@ Ton premier programme affiche déjà quelque chose. Bravo, tu fais de l’algo.
 Tu croiseras deux grands frères de `algorithme` (détaillés au [chapitre 05](/routines/fonctions)) :
 
 ```algo
-procedure dire_bonjour()
+procedure direBonjour
 debut
     afficher ("Bonjour");
 fin
@@ -79,7 +79,7 @@ fin
 ```
 
 ```algo
-procedure deux_lignes()
+procedure deuxLignes
 debut
     afficher ("Première ligne");
     afficher ("Deuxième ligne");

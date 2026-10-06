@@ -17,25 +17,25 @@ Aucun : c’est de la culture d’ingénieur, à lire quand tu veux impressionne
 
 Deux catastrophes nées du mépris des spécifications :
 
-- **Ariane 5 (1996)** : une fusée flambant neuve qui s’autodétruit 40 secondes après le décollage — un morceau de code réutilisé d’Ariane 4 sans re-vérifier les hypothèses. 500 millions de dollars en fumée.
-- **Apollo-Soyuz (1975)** : le rendez-vous spatial américano-soviétique manque de rater parce que les uns calculaient en **mètres** et les autres en **pouces**. Même nombre, pas même monde.
+- **Ariane 5 (1996)** : le vol inaugural a été détruit 37 secondes après l’allumage du moteur principal. Le rapport de la commission d’enquête impute l’accident à des erreurs de spécification et de conception dans le logiciel du système de référence inertielle ([ESA, présentation du rapport](https://www.esa.int/Newsroom/Press_Releases/Ariane_501_-_Presentation_of_Inquiry_Board_report)).
+- **Mars Climate Orbiter (1999)** : la sonde a été perdue après une erreur de conversion entre unités : le logiciel au sol utilisait des unités anglaises alors que celui de bord travaillait en métrique ([NASA, page mission](https://science.nasa.gov/mission/mars-climate-orbiter/)).
 
 Moralité : typer, nommer, vérifier les unités et les bornes, ce n’est pas du zèle — c’est le métier.
 
 ## Les 10 règles de la NASA, version L1
 
-La NASA impose ces règles à son code critique. Tu peux les appliquer dès le papier :
+La référence du cours adapte dix règles de codage associées à la NASA. En voici la formulation à retenir :
 
-1. **Pas de flux tordus** : pas de `goto`, pas de récursion sauvage — reste sur des structures lisibles.
-2. **Toute boucle a une borne** : tu dois pouvoir dire quand elle s’arrête (revois ta [condition d’arrêt](/decouverte/penser)).
-3. **Pas d’allocation dynamique** : déclare tes tableaux à l’avance, ne bricole pas la mémoire au vol.
-4. **Fonctions courtes** : si ça ne tient pas sur une page, découpe (voir [Fonctions](/routines/fonctions)).
-5. **Au moins deux vérifications par fonction** : teste tes hypothèses (`si` de garde, valeurs limites).
-6. **Données au plus près** : une variable ne vit que là où elle sert — déclare local, pas global.
-7. **Toujours vérifier les retours** : une fonction qui rend quelque chose, on utilise (ou on contrôle) ce qu’elle rend.
-8. **Pas de magie cachée** : pas d’astuce obscure, le code se lit comme du français.
-9. **Pointeurs : touche pas** : en papier, ça veut dire — ne manipule jamais une donnée « au hasard », toujours via son nom et son indice valide (0 à `taille - 1`).
-10. **Zéro avertissement** : traite chaque warning comme une erreur. Si l’outil râle, c’est qu’il a raison avant toi.
+1. **Éliminer les structures de contrôle complexes** : pas de `goto` ni de récursion.
+2. **Borner les boucles** : prévoir une borne supérieure fixe et mesurable pour chaque boucle.
+3. **Éviter l’allocation dynamique sur le tas** : privilégier une gestion mémoire statique et prévisible. Cette règle semble contredire la section sur les tableaux dynamiques de la référence du dépôt; leur usage reste à clarifier.
+4. **Limiter la taille des fonctions** : le corps d’un sous-programme ne dépasse pas l’équivalent d’une page.
+5. **Contrôler par assertions** : prévoir au moins deux assertions d’exécution par fonction.
+6. **Restreindre la portée des données** : garder chaque variable dans la portée la plus limitée possible.
+7. **Vérifier les valeurs de retour** : examiner les retours des fonctions, ou les ignorer explicitement quand c’est intentionnel.
+8. **Restreindre le préprocesseur** : réserver ses directives aux usages strictement nécessaires.
+9. **Limiter l’usage des pointeurs** : un seul niveau de déréférencement et aucun pointeur de fonction.
+10. **Compiler avec les avertissements activés** : traiter chaque avertissement comme une erreur.
 
 Tu n’appliqueras pas les 10 demain — mais les n°2, 4, 6 et 10, dès ton prochain TD.
 
@@ -70,10 +70,10 @@ Cite une règle NASA pertinente dans ta copie (« boucle bornée, règle n°2 »
       ],
       correctAnswers: [0, 1, 2, 3],
       explanation:
-        "Tu n'appliqueras pas les 10 demain — mais les n°2, 4, 6 et 10 sont accessibles dès maintenant. La n°5 (pas de `goto`) est singled out dans la liste.",
+        "Tu n'appliqueras pas les 10 demain — mais les n°2, 4, 6 et 10 sont accessibles dès maintenant. L’interdiction de `goto` correspond à la règle n°1, pas à la règle n°5.",
     },
     {
-      question: "Un `si` dans une extension plante « il fait les deux chemins ». Lequel des cinq pièges est-ce ?",
+      question: "Tu découvres un bloc `si` sans `fsi`. Quel piège as-tu repéré ?",
       options: [
         "Le `;` oublié",
         "`<-` confondu avec `vaut`",
@@ -83,7 +83,7 @@ Cite une règle NASA pertinente dans ta copie (« boucle bornée, règle n°2 »
       ],
       correctAnswers: [2],
       explanation:
-        "Erreur n°3 : un `si` sans `fsi`, un `pour` sans `ffaire`… celui qui ne se plie pas dans l'éditeur est celui qui manque sa fin.",
+        "Erreur n°3 : un `si` sans `fsi`, un `pour` sans `ffaire`… le bloc n'est pas fermé et la structure est incomplète.",
     },
     {
       question: "L'IA te propose un algo qui compile mais dont tu ne comprends pas une ligne. Tu rends ?",

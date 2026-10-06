@@ -14,12 +14,19 @@ type Chapter = {
 
 const chapters: Chapter[] = [
   {
+    number: '00',
+    title: 'Penser comme un ordinateur',
+    description: 'Raisonner avec des instructions précises et une condition d’arrêt.',
+    to: '/decouverte/penser',
+    prerequisites: 'Aucun',
+  },
+  {
     number: '01',
     title: 'Premiers pas',
     description:
       'Écrire un programme, afficher, saisir, déclarer des variables.',
     to: '/decouverte/algorithme',
-    prerequisites: 'Aucun',
+    prerequisites: 'Chapitre 00',
   },
   {
     number: '02',

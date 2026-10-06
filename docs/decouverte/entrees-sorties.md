@@ -16,12 +16,13 @@ format: mdx
 ## Le minimum vital
 
 ```algo
+declarer age : entier;
 afficher ("Quel âge as-tu ? ");
 saisir (age);
 afficher (age);
 ```
 
-`afficher` montre, `saisir` attend que l’utilisateur tape quelque chose et le range dans `age`. (D’où vient `age` ? On le déclare — voir [page suivante](/decouverte/variables). Pour l’instant, admets qu’il existe.)
+`afficher` montre, `saisir` attend que l’utilisateur tape quelque chose et le range dans `age`. On déclare toujours la variable avant de l’utiliser; la déclaration est détaillée à la [page suivante](/decouverte/variables).
 
 ## Pas à pas
 
@@ -29,9 +30,10 @@ Imaginons que l’utilisateur tape `19` :
 
 | Étape | Ligne lue | Ce qui se passe |
 |---|---|---|
-| 1 | `afficher ("Quel âge as-tu ? ");` | L’écran affiche : Quel âge as-tu ? |
-| 2 | `saisir (age);` | Le programme attend… l’utilisateur tape `19`, `age` vaut maintenant 19 |
-| 3 | `afficher (age);` | L’écran affiche : 19 |
+| 1 | `declarer age : entier;` | La variable `age` est déclarée, mais pas encore initialisée |
+| 2 | `afficher ("Quel âge as-tu ? ");` | L’écran affiche : Quel âge as-tu ? |
+| 3 | `saisir (age);` | Le programme attend… l’utilisateur tape `19`, `age` vaut maintenant 19 |
+| 4 | `afficher (age);` | L’écran affiche : 19 |
 
 ## Sauter une ligne
 
@@ -45,13 +47,13 @@ afficher ("Ligne 2");
 
 ## Ne jamais faire confiance à l’utilisateur (NTUI)
 
-Règle d’or du CM : **NTUI — Never Trust User Input.** Toute saisie est potentiellement erronée (ou malveillante) : l’utilisateur peut taper une lettre quand tu attends un nombre, ou un âge de 250 ans. Ne crois jamais une saisie sur parole — **vérifie-la** avec un test ou une boucle :
+Règle d’or du CM : **NTUI — Never Trust User Input.** Toute saisie est potentiellement erronée (ou malveillante) : l’utilisateur peut taper une lettre quand tu attends un nombre, ou une valeur hors de l’intervalle autorisé. Ne crois jamais une saisie sur parole — **vérifie-la** avec un test ou une boucle :
 
 ```algo
+declarer age : entier;
 afficher ("Ton âge ? ");
 saisir (age);
-tant_que (age <= 0)
-faire
+tant_que (age <= 0) faire
     afficher ("Un vrai âge, stp : ");
     saisir (age);
 ffaire
@@ -61,10 +63,17 @@ Tu reverras ce motif partout : saisir, tester, re-saisir tant que c’est invali
 
 ## Les textes, en détail
 
-Le type `string`, c’est du texte entre doubles quotes, avec trois super-pouvoirs :
+Le type `string`, c’est du texte entre doubles quotes, avec trois super-pouvoirs. Le premier exemple illustre les guillemets protégés :
 
 ```algo
 afficher ("AEIOUY\"");
+```
+
+Le second déclare et saisit `prenom` avant de le concaténer :
+
+```algo
+declarer prenom : string;
+saisir (prenom);
 afficher ("Bonjour " + prenom);
 ```
 

@@ -11,7 +11,7 @@ Bienvenue ! Ce wiki t’apprend **l’algorithmique sur papier** de l’IUT d’
 
 ## Comment ça marche ?
 
-Chaque page suit le même plan :
+Chaque page de cours suit le même plan :
 
 1. **L’idée en une phrase** — ce que tu vas comprendre.
 2. **Le minimum vital** — la syntaxe à connaître, rien de plus.

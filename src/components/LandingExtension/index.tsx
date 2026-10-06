@@ -7,25 +7,24 @@ import styles from './styles.module.css';
 type Channel = {
   name: string;
   description: string;
-  to: string;
-  external?: boolean;
+  href: string;
 };
 
 const channels: Channel[] = [
   {
     name: 'Marketplace VSCode',
     description: 'Installation en un clic depuis VSCode.',
-    to: '/extension/installation',
+    href: 'https://marketplace.visualstudio.com/items?itemName=betteriutinfoaix.better-algo-papier',
   },
   {
     name: 'Open VSX',
     description: 'Pour VSCodium et autres éditeurs compatibles.',
-    to: '/extension/installation',
+    href: 'https://open-vsx.org/extension/betteriutinfoaix/better-algo-papier',
   },
   {
     name: 'Fichier .vsix',
     description: 'Installation manuelle, hors ligne.',
-    to: '/extension/installation',
+    href: 'https://github.com/BetterIUTInfoAix/BetterAlgoPapier/releases/latest',
   },
 ];
 
@@ -46,7 +45,7 @@ export default function LandingExtension(): ReactNode {
             {channels.map((ch) => (
               <Link
                 key={ch.name}
-                to={ch.to}
+                href={ch.href}
                 className={styles.channel}>
                 <span className={styles.channelName}>{ch.name}</span>
                 <span className={styles.channelDescription}>
@@ -73,19 +72,27 @@ export default function LandingExtension(): ReactNode {
               <code>
                 <span className={styles.codeKeyword}>algorithme</span> moyenne
                 {'\n'}
-                <span className={styles.codeKeyword}>declarer</span> notes : <span className={styles.codeType}>tableau_de</span> <span className={styles.codeNumber}>30</span> <span className={styles.codeType}>entier</span>
+                <span className={styles.codeKeyword}>debut</span>
                 {'\n'}
-                <span className={styles.codeKeyword}>declarer</span> somme : <span className={styles.codeType}>entier</span> {'<-'} <span className={styles.codeNumber}>0</span>
+                <span className={styles.codeKeyword}>declarer</span> notes : <span className={styles.codeType}>tableau_de</span> [<span className={styles.codeNumber}>30</span>] <span className={styles.codeType}>reel</span>;
                 {'\n'}
+                <span className={styles.codeKeyword}>declarer</span> note : <span className={styles.codeType}>reel</span>;
                 {'\n'}
-                <span className={styles.codeKeyword}>pour</span> i {'<-'} <span className={styles.codeNumber}>0</span> <span className={styles.codeKeyword}>a</span> <span className={styles.codeFunction}>taille</span> (notes)
+                <span className={styles.codeKeyword}>declarer</span> somme : <span className={styles.codeType}>reel</span>;
                 {'\n'}
-                {"    "}somme {'<-'} somme + notes[i]
+                somme {'<-'} <span className={styles.codeNumber}>0</span>;
                 {'\n'}
-                <span className={styles.codeKeyword}>fpour</span>
+                <span className={styles.codeKeyword}>pour</span> (i <span className={styles.codeKeyword}>variant_de</span> <span className={styles.codeNumber}>0</span> <span className={styles.codeKeyword}>a</span> <span className={styles.codeNumber}>29</span>) <span className={styles.codeKeyword}>faire</span>
                 {'\n'}
+                {"    "}<span className={styles.codeFunction}>saisir</span> (note);
                 {'\n'}
-                <span className={styles.codeFunction}>afficher</span> (somme / <span className={styles.codeFunction}>taille</span> (notes))
+                {"    "}notes[i] {'<-'} note;
+                {'\n'}
+                {"    "}somme {'<-'} somme + note;
+                {'\n'}
+                <span className={styles.codeKeyword}>ffaire</span>
+                {'\n'}
+                <span className={styles.codeFunction}>afficher</span> (somme / <span className={styles.codeFunction}>taille</span> (notes));
                 {'\n'}
                 <span className={styles.codeKeyword}>fin</span>
               </code>

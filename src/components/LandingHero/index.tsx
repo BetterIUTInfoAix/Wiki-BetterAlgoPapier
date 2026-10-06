@@ -28,14 +28,15 @@ function AlgoExample(): ReactNode {
           {'\n'}
           <span className={styles.algoKeyword}>algorithme</span> bonjour
           {'\n'}
-          <span className={styles.algoKeyword}>declarer</span> prenom : <span className={styles.algoType}>string</span>
+          <span className={styles.algoKeyword}>debut</span>
           {'\n'}
+          <span className={styles.algoKeyword}>declarer</span> prenom : <span className={styles.algoType}>string</span>;
           {'\n'}
-          <span className={styles.algoFunction}>afficher</span> (<span className={styles.algoString}>"Bonjour !"</span>)
+          <span className={styles.algoFunction}>afficher</span> (<span className={styles.algoString}>"Ton prénom ? "</span>);
           {'\n'}
-          <span className={styles.algoFunction}>saisir</span> (prenom)
+          <span className={styles.algoFunction}>saisir</span> (prenom);
           {'\n'}
-          <span className={styles.algoFunction}>afficher</span> (<span className={styles.algoString}>"Enchanté, "</span> + prenom)
+          <span className={styles.algoFunction}>afficher</span> (<span className={styles.algoString}>"Enchanté, "</span> + prenom);
           {'\n'}
           <span className={styles.algoKeyword}>fin</span>
         </code>

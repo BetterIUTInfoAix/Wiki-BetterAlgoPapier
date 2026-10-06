@@ -16,8 +16,7 @@ format: mdx
 ## Le minimum vital
 
 ```algo
-pour (i variant_de 1 a 3)
-faire
+pour (i variant_de 1 a 3) faire
     afficher (i);
 ffaire
 ```
@@ -35,36 +34,54 @@ Sur papier, on suit une boucle avec un **tableau de trace** : une colonne par va
 | 3 | 3 | 3 |
 | fin | — | la boucle s’arrête (`i` a dépassé 3) |
 
-Prends l’habitude de tracer : 80 % des bugs de boucles se voient dans le tableau avant même de finir le programme.
+Prends l’habitude de tracer : un tableau de trace aide souvent à repérer les erreurs de boucle avant de terminer le programme.
 
-## Les 4 autres boucles
+## Les boucles conditionnelles et la boucle infinie
+
+La référence présente à la fois une règle générale de bornage fixe et des boucles conditionnelles sans borne statique; cette contradiction reste à clarifier. Les exemples ci-dessous suivent les formes de boucles décrites dans ses sections détaillées.
 
 **`tant_que` — on répète tant que c’est vrai (zéro tour possible) :**
 
 ```algo
+declarer age : entier;
 afficher ("Quel âge as-tu ? ");
 saisir (age);
-tant_que (age <= 0)
-faire
+tant_que (age <= 0) faire
     afficher ("Un vrai âge, stp : ");
     saisir (age);
 ffaire
 ```
 
-Si l’utilisateur tape directement 19, le corps ne tourne jamais. Trace avec `age = 0` puis `19` : premier tour exécuté, deuxième test faux → sortie.
+Si l’utilisateur tape directement 19, le corps ne tourne jamais. Trace avec `age` initialisé à `0`, puis saisi à `19` : premier tour exécuté, deuxième test faux → sortie.
 
 **`jusqua ... faire` — on répète jusqu’à ce que ce soit vrai :**
 
 ```algo
-jusqua (mot vaut "stop")
-faire
+declarer mot : string;
+afficher ("Saisis un mot (stop pour terminer) : ");
+saisir (mot);
+jusqua (mot vaut "stop") faire
+    afficher (mot);
+    afficher ("Saisis un autre mot (stop pour terminer) : ");
     saisir (mot);
 ffaire
 ```
 
-**`repeter ... jusqua` — pareil, mais au moins un tour garanti :**
+**`repeter ... tant_que` — post-condition d’exécution, au moins un tour :**
 
 ```algo
+declarer code : entier;
+repeter
+    saisir (code);
+tant_que (code ne_vaut_pas 1234)
+```
+
+Le corps s’exécute d’abord; il est répété tant que le code ne vaut pas 1234.
+
+**`repeter ... jusqua` — post-condition d’arrêt, au moins un tour :**
+
+```algo
+declarer code : entier;
 repeter
     saisir (code);
 jusqua (code vaut 1234)
@@ -75,6 +92,7 @@ Ici pas besoin de saisir avant la boucle : le corps tourne d’abord, on teste a
 **`boucle` + `sortie` — sortie manuelle au milieu :**
 
 ```algo
+declarer x : entier;
 boucle
     saisir (x);
     si (x vaut 0)
@@ -89,8 +107,7 @@ fboucle
 Parfois tu ne veux ni sortir ni t’enfoncer dans des `si` imbriqués : `continue` remonte **immédiatement** au début de la boucle et passe au tour suivant.
 
 ```algo
-pour (i variant_de 1 a 10)
-faire
+pour (i variant_de 1 a 10) faire
     si (modulo (i, 2) vaut 1)
         continue;
     fsi
@@ -109,18 +126,17 @@ Résultat : seuls les pairs s’affichent, sans un seul niveau d’indentation e
 
 ## La règle stricte du `pour`
 
-Règle du CM, non négociable : dans un `pour`, la variable de parcours **doit visiter chaque valeur, sans rupture**. Autrement dit : **pas de `sortie` dans un `pour`**.
+La référence interdit `sortie` dans un `pour` : la variable de parcours doit visiter chaque valeur de l’intervalle, sans rupture.
 
 ```algo
-pour (i variant_de 1 a 10)
-faire
+pour (i variant_de 1 a 10) faire
     si (i vaut 5)
         sortie;
     fsi
 ffaire
 ```
 
-Ça, c’est interdit. Pourquoi ? Parce que la prévisibilité du `pour` permet au système d’optimiser (et un jour de paralléliser) : s’il peut partir en vrille à tout moment, adieu les optimisations. Besoin de sortir en cours de route ? Prends `tant_que` ou `boucle`, c’est fait pour ça.
+Ça, c’est interdit par la référence : dans cette boucle, la variable de parcours doit visiter toutes les valeurs de l’intervalle. Si le traitement doit pouvoir s’interrompre selon une condition, choisis plutôt une structure conditionnelle documentée dans la référence.
 
 ## Quelle boucle choisir ?
 
@@ -146,23 +162,22 @@ La boucle infinie accidentelle : dans une `tant_que`, la variable testée **doit
 <summary>Solutions</summary>
 
 ```algo
-pour (i variant_de 1 a 5)
-faire
+pour (i variant_de 1 a 5) faire
     afficher (i);
 ffaire
 ```
 
 ```algo
-algorithme pairs_jusqua_20
+algorithme pairsJusqua20
 debut
-    pour (i variant_de 1 a 10)
-    faire
+    pour (i variant_de 1 a 10) faire
         afficher (i * 2);
     ffaire
 fin
 ```
 
 ```algo
+declarer mdp : string;
 repeter
     afficher ("Mot de passe ? ");
     saisir (mdp);
@@ -196,7 +211,7 @@ jusqua (mdp vaut "casali")
       ],
       correctAnswers: [1],
       explanation:
-        "Règle non négociable du CM : le `pour` reste prévisible, c'est ce qui permet d'optimiser. Besoin de sortir en cours de route ? Prends `tant_que` ou `boucle`.",
+        "La référence interdit `sortie` dans un `pour` : la variable de parcours doit visiter chaque valeur de l'intervalle. Besoin d'une interruption conditionnelle ? Choisis une boucle conditionnelle.",
     },
     {
       question: "Tu veux redemander l'âge tant que l'utilisateur donne un nombre négatif. Quelle boucle, et que manque-t-il dans le corps ?",

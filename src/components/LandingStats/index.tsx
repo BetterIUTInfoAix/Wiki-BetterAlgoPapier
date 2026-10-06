@@ -10,9 +10,9 @@ type Stat = {
 
 const stats: Stat[] = [
   {value: '7', label: 'types de données'},
-  {value: '19', label: 'builtins disponibles'},
-  {value: '7', label: 'chapitres progressifs'},
-  {value: '17', label: 'pages de cours'},
+  {value: '20', label: 'builtins répertoriés'},
+  {value: '8', label: 'chapitres progressifs'},
+  {value: '16', label: 'pages de cours'},
 ];
 
 export default function LandingStats(): ReactNode {

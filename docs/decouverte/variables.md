@@ -27,12 +27,12 @@ Et les 7 types à connaître :
 | Type | Contient | Exemple |
 |---|---|---|
 | `entier` | nombre sans virgule | `-3`, `19` |
-| `entier_naturel` | nombre positif | `0`, `42` |
+| `entier_naturel` | nombre positif ou nul | `0`, `42` |
 | `reel` | nombre à virgule, notation scientifique acceptée | `3.5`, `-21.2e12` |
 | `booleen` | `vrai` ou `faux` | `vrai` |
 | `caractere` | un symbole entre simples quotes | `'a'` |
 | `string` | du texte entre doubles quotes | `"Léa"` |
-| `tableau_de` | une série (détaillée au [chapitre 04](/donnees/tableaux)) | `tableau_de 30 entier` |
+| `tableau_de` | une série (détaillée au [chapitre 04](/donnees/tableaux)) | `tableau_de [30] entier` |
 
 ## Pas à pas
 
@@ -57,26 +57,28 @@ Lis `<-` comme « prend la valeur ». La flèche montre où va la valeur : toujo
 La nomenclature n’est pas de la déco, c’est de la **maintenance** : dans 3 mois (ou pour ton voisin de TD), un bon nom explique le code tout seul.
 
 - **Variables en CamelCase** : on colle les mots, chaque nouveau mot commence par une majuscule — `superPlombier`, `moyenneGenerale`, `nombreEleves`.
-- **Constantes avec `K` devant** (obligatoire) : `KtauxTVA`, `KMAJEUR`.
+- **Constantes avec `K` devant** (obligatoire) : `KtauxTva`, `KageMajorite`; leur déclaration inclut aussi le mot-clé `constante`.
 
 ```algo
-declarer KtauxTVA : reel <- 0.2;
+declarer KtauxTva : constante reel <- 0.2;
+declarer prixHT : reel;
 declarer prixTTC : reel;
-prixTTC <- prixHT * (1 + KtauxTVA);
+saisir (prixHT);
+prixTTC <- prixHT * (1 + KtauxTva);
 ```
 
 Une erreur de nom ne bloque pas l’exécution mais ruine la compréhension : appeler `Link` un livreur de princesse au lieu de `Mario`, personne ne s’y retrouve. Nomme ce que c’est, pas ce que ça fait joli.
 
 :::tip[Caractères voisins]
-`succ (c)` donne le caractère suivant, `prec (c)` le précédent (certains polys écrivent `pred`, c’est la même idée — dans l’extension et ce wiki, c’est `prec`).
+La référence nomme `succ (c)` le caractère suivant et `pred (c)` le caractère précédent. Elle emploie aussi `prec`, `is_lower` et `to_upper` dans d’autres exemples : ces variantes restent à clarifier avant de choisir une syntaxe unique.
 :::
 
 ## Constantes
 
-Une valeur qui ne changera jamais, avec un `K` devant (voir ci-dessus) :
+Une valeur qui ne changera jamais se déclare avec le mot-clé `constante` et un identificateur préfixé par `K` :
 
 ```algo
-declarer KMAJEUR : entier <- 18;
+declarer KageMajorite : constante entier <- 18;
 ```
 
 :::danger[Piège Casali]
@@ -99,8 +101,10 @@ afficher (moyenne);
 ```
 
 ```algo
-declarer a : entier <- 3;
-declarer b : entier <- 7;
+declarer a : entier;
+a <- 3;
+declarer b : entier;
+b <- 7;
 declarer tmp : entier;
 tmp <- a;
 a <- b;
@@ -130,9 +134,9 @@ b <- tmp;
       after: " 19;",
     },
     {
-      before: "Une constante se déclare avec le préfixe ",
-      accepted: ["K"],
-      after: " : declarer KMAJEUR : entier <- 18;",
+      before: "Pour déclarer `KageMajorite` comme constante, on écrit : declarer KageMajorite : ",
+      accepted: ["constante"],
+      after: " entier <- 18;",
     },
   ]}
   hint="Indice : une flèche, deux places. Le type se déclare avant de ranger quoi que ce soit."
