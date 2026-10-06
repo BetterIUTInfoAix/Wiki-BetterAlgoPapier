@@ -56,19 +56,21 @@ reste <- modulo (17, 5);
 
 Contrairement aux maths (tout évalué d’un coup), l’ordinateur évalue **dans l’ordre, de gauche à droite**. `ET_ALORS` et `OU_SINON` exploitent ça : dès que le résultat est joué, **on n’évalue pas la suite**.
 
-Exemple du CM : pour tester la date d’un fichier, vérifie **d’abord** qu’il existe :
+Exemple conceptuel : pour tester la date d’un fichier, vérifie **d’abord** qu’il existe. `fichierExiste`, `dateCreation` et `effacerFichier` ci-dessous sont des fonctions fictives de l’exemple (pas des primitives intégrées au langage) :
 
 ```algo
-si (fichier_existe (nom) ET_ALORS date_valide (nom))
+si (fichierExiste("ADetruire") ET_ALORS dateCreation("ADetruire") < dateSeuil)
+    effacerFichier("ADetruire");
+fsi
 ```
 
 | Étape | Morceau évalué | Résultat |
 |---|---|---|
-| 1 | `fichier_existe (nom)` | faux (le fichier n’existe pas) |
+| 1 | `fichierExiste("ADetruire")` | faux (le fichier n’existe pas) |
 | 2 | `ET_ALORS` | c’est déjà perdu → **on s’arrête là** |
-| 3 | `date_valide (nom)` | **jamais évalué** — et tant mieux, lire la date d’un fichier fantôme planterait |
+| 3 | `dateCreation("ADetruire") < dateSeuil` | **jamais évalué** — et tant mieux, lire la date d’un fichier fantôme planterait |
 
-Avec un `ET` classique, la machine évaluerait quand même la date… et planterait. Retiens : **le test de garde d’abord, l’accès ensuite**. Même logique avec `OU_SINON` dans l’autre sens.
+Selon la référence, un `ET` classique évalue aussi le second terme; dans cet exemple conceptuel, la lecture de la date échouerait si le fichier n’existe pas. Retiens : **le test de garde d’abord, l’accès ensuite**. Même logique avec `OU_SINON` dans l’autre sens.
 
 :::danger[Piège Casali]
 Trois symboles, trois jobs : `<-` **range**, `vaut` **compare**, `=` tout seul **ne fait ni l’un ni l’autre** dans une condition — oublie-le. Et `==` / `!=` n’existent pas en papier : c’est `vaut` / `ne_vaut_pas`.
@@ -119,15 +121,15 @@ x >= 10 ET x <= 20
         "Un seul `OU` vrai suffit : `faux OU vrai` donne vrai. Voir le tableau d'évaluation pas à pas.",
     },
     {
-      question: "`fichier_existe (nom)` vaut faux. Dans `si (fichier_existe (nom) ET_ALORS date_valide (nom))`, que se passe-t-il ?",
+      question: "`fichierExiste(\"ADetruire\")` vaut faux. Dans l'exemple conceptuel `si (fichierExiste(...) ET_ALORS dateCreation(...) < dateSeuil)`, que se passe-t-il ?",
       options: [
-        "`date_valide` est évaluée puis le si est faux",
-        "Le test s'arrête sur le faux : `date_valide` n'est jamais évaluée",
+        "`dateCreation` est évaluée puis le si est faux",
+        "Le test s'arrête sur le faux : `dateCreation` n'est jamais évaluée",
         "Le programme plante en lisant un fichier fantôme",
       ],
       correctAnswers: [1],
       explanation:
-        "C'est tout l'intérêt du court-circuit : le test de garde d'abord, l'accès ensuite. Avec un `ET` classique, la machine lirait la date d'un fichier inexistant.",
+        "C'est tout l'intérêt du court-circuit : le test de garde d'abord, l'accès ensuite. Avec un `ET` classique, le second terme serait évalué alors que le fichier n'existe pas.",
     },
   ]}
 />

@@ -16,14 +16,10 @@ format: mdx
 ## Le minimum vital
 
 ```algo
-declarer notes : tableau_de 30 entier;
+declarer notes : tableau_de [30] entier;
 ```
 
-Un classeur de 30 cases entières, nommé `notes`. Il existe aussi sans taille annoncée, et avec d’autres contenus :
-
-```algo
-declarer noms : tableau_de 50 string;
-```
+Un classeur de 30 cases entières, nommé `notes`. La référence décrit aussi les tableaux sans taille annoncée, mais leur emploi est à clarifier puisque la règle d’allocation de cette même référence semble le contredire.
 
 ## Les cases sont numérotées à partir de 0
 
@@ -38,26 +34,31 @@ Retiens le réflexe : **dernière case = `taille - 1`**. Vouloir lire la case `t
 ## Pas à pas — remplir puis lire
 
 ```algo
-pour (i variant_de 1 a 3)
-faire
-    afficher ("Note ? ");
-    saisir (note);
-ffaire
-afficher (taille (notes));
+algorithme saisirNotes
+debut
+    declarer notes : tableau_de [3] entier;
+    declarer note : entier;
+    pour (i variant_de 0 a 2) faire
+        afficher ("Note ? ");
+        saisir (note);
+        notes[i] <- note;
+    ffaire
+    afficher (taille (notes));
+fin
 ```
 
-| Tour | `i` | `note` saisie | Affichage final |
-|---|---|---|---|
-| 1 | 1 | 12 | — |
-| 2 | 2 | 8 | — |
-| 3 | 3 | 15 | — |
-| fin | — | — | `taille (notes)` → le nombre de cases |
+| Tour | `i` | `note` saisie | Valeur rangée | Affichage |
+|---|---:|---:|---|---|
+| 1 | 0 | 12 | `notes[0] <- 12` | — |
+| 2 | 1 | 8 | `notes[1] <- 8` | — |
+| 3 | 2 | 15 | `notes[2] <- 15` | — |
+| fin | — | — | `notes` contient `[12, 8, 15]` | `taille (notes)` affiche 3 |
 
 `taille` te dit combien de cases contient le classeur — ou combien de lettres contient une chaîne.
 
 ## Changer la taille en cours de route
 
-Deux outils, deux jobs :
+La référence documente deux opérations de redimensionnement, mais leur autorisation reste à clarifier avec la règle qui proscrit l’allocation dynamique :
 
 ```algo
 redimensionner (notes, 60);
@@ -65,36 +66,36 @@ allonger (notes, 5);
 ```
 
 - `redimensionner (t, n)` : le tableau fait désormais exactement `n` cases.
-- `allonger (t, n)` : on **ajoute** `n` cases non initialisées à la fin (vu en CM — la coloration arrive bientôt dans l’extension).
-
-Ton classeur de 30 passe à 60 cases avec le premier, ou à 35 cases (dont 5 vides) avec le second. Pratique quand tu ne connais pas le nombre d’élèves à l’avance.
+- `allonger (t, n)` : on **ajoute** `n` cases non initialisées à la fin (opération documentée dans la référence, mais à clarifier au regard de la règle contre l’allocation dynamique).
 
 :::danger[Piège Casali]
-Déclare le tableau **avant** la boucle qui le remplit, et ne confonds pas le tableau (`notes`, le classeur) avec la variable temporaire (`note`, une case). Relis ton code à voix haute : « je saisis une note, je la range dans notes ».
+Déclare le tableau **avant** la boucle qui le remplit, parcours les indices de `0` à `taille (notes) - 1`, et range chaque saisie dans la case correspondante (`notes[i]`).
 :::
 
 ## À toi
 
-- **Reproduire** : déclare un `tableau_de 10 reel` nommé `prix`, affiche sa `taille`.
+- **Reproduire** : déclare un `tableau_de [10] reel` nommé `prix`, affiche sa `taille`.
 - **Adapter** : saisis 5 prénoms dans un tableau de `string` avec un `pour`, puis affiche la `taille`.
-- **Créer** : déclare un tableau, `redimensionner`-le au double, affiche les deux tailles.
+- **Créer** : si l’enseignant confirme que les tableaux dynamiques sont autorisés, déclare un tableau, `redimensionner`-le au double et affiche les deux tailles.
 
 <details>
 <summary>Solutions</summary>
 
 ```algo
-declarer prix : tableau_de 10 reel;
+declarer prix : tableau_de [10] reel;
 afficher (taille (prix));
 ```
 
 ```algo
-declarer noms : tableau_de 5 string;
-pour (i variant_de 1 a 5)
-faire
-    afficher ("Prénom ? ");
-    saisir (prenom);
-ffaire
-afficher (taille (noms));
+algorithme saisirPrenoms
+debut
+    declarer noms : tableau_de [5] string;
+    pour (i variant_de 0 a 4) faire
+        afficher ("Prénom ? ");
+        saisir (noms[i]);
+    ffaire
+    afficher (taille (noms));
+fin
 ```
 </details>
 
@@ -105,9 +106,9 @@ afficher (taille (noms));
   title="Complète les trous"
   blanks={[
     {
-      before: "Pour déclarer un classeur de 30 cases entières nommé notes, on écrit : declarer notes : tableau_de ",
+      before: "Pour déclarer un classeur de 30 cases entières nommé notes, on écrit : declarer notes : tableau_de [",
       accepted: ["30", "trente"],
-      after: " ",
+      after: "] ",
     },
     {
       before: "",

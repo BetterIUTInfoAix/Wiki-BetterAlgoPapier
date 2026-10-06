@@ -27,7 +27,7 @@ Lis la première ligne comme une carte d’identité : elle s’appelle `double`
 Une procédure, c’est pareil mais sans rien rendre — elle **fait** au lieu de **calculer** :
 
 ```algo
-procedure afficher_bonjour(nom : in string)
+procedure afficherBonjour(nom : in string)
 debut
     afficher ("Bonjour ");
     afficher (nom);
@@ -54,14 +54,15 @@ fin
 ## Pas à pas
 
 ```algo
-declarer compteur : entier <- 5;
+declarer compteur : entier;
+compteur <- 5;
 incrementer (compteur);
 afficher (compteur);
 ```
 
 | Étape | Ligne lue | `compteur` | Ce qui se passe |
 |---|---|---|---|
-| 1 | `declarer compteur : entier <- 5;` | 5 | la boîte contient 5 |
+| 1 | `declarer compteur : entier;` puis `compteur <- 5;` | 5 | la boîte est déclarée puis initialisée |
 | 2 | `incrementer (compteur);` | 5 → **6** | `in_out` : la procédure modifie la vraie boîte |
 | 3 | `afficher (compteur);` | 6 | L’écran affiche : 6 |
 
@@ -78,15 +79,16 @@ debut
 fin
 ```
 
-`isMultiple`, `hasValue`… : si le nom se lit comme une question fermée, c’est un prédicat. Tu en as déjà écrit un sans le savoir avec `est_pair`.
+`isMultiple`, `isPair`… : si le nom se lit comme une question fermée, c’est un prédicat. La référence recommande les préfixes anglais `is...`, `has...` et `are...`. Pour appeler `isMultiple`, on suppose que son diviseur `k` est non nul : le cas modulo par zéro n’est pas défini ici.
 
 ## Règle de sécurité : initialise tes `out`
 
 Règle impérative du CM : **tout paramètre marqué `out` doit recevoir une valeur à l’intérieur du sous-programme.** Sinon, l’appelant récupère une case jamais remplie — un effet de bord qui pourrit les données sortantes :
 
 ```algo
-procedure lire_note(n : out entier)
+procedure lireNote(n : out entier)
 debut
+    n <- 0;
     afficher ("Note ? ");
     saisir (n);
 fin
@@ -95,14 +97,14 @@ fin
 Ici `n` est bien initialisé (via `saisir`) avant la fin de la procédure. Si tu oublies, c’est comme rendre un cahier vide en prétendant l’avoir rempli.
 
 :::danger[Piège Casali]
-`in` pour donner, `out`/`in_out` pour récupérer. Si ta procédure « ne rend rien » alors qu’elle devrait, vérifie le marqueur en premier — pas le corps. Et une `fonction` se termine par `renvoie ...;`, une `procedure` n’a pas de `renvoie`.
+`in` pour fournir une donnée, `out` pour produire un résultat, `in_out` pour consulter puis modifier une donnée existante. Si ta procédure « ne rend rien » alors qu’elle devrait, vérifie le marqueur en premier — pas le corps. Et une `fonction` se termine par `renvoie ...;`, une `procedure` n’a pas de `renvoie`.
 :::
 
 ## À toi
 
 - **Reproduire** : écris une fonction `carre` qui prend un entier `in` et renvoie son carré.
 - **Adapter** : écris une procédure `echanger` avec deux paramètres `in_out` qui échange leur contenu (revois [Variables](/decouverte/variables)).
-- **Créer** : une fonction `est_pair` qui utilise `modulo` et renvoie un `booleen`, puis un algorithme qui l’utilise dans un `si`.
+- **Créer** : une fonction `isPair` qui utilise `modulo` et renvoie un `booleen`, puis un algorithme qui l’utilise dans un `si`.
 
 <details>
 <summary>Solutions</summary>
@@ -125,16 +127,16 @@ fin
 ```
 
 ```algo
-fonction est_pair(x : in entier) renvoie booleen
+fonction isPair(x : in entier) renvoie booleen
 debut
     renvoie modulo (x, 2) vaut 0;
 fin
 
-algorithme test_pair
+algorithme testPair
 debut
     declarer n : entier;
     saisir (n);
-    si (est_pair (n))
+    si (isPair (n))
         afficher ("pair");
     sinon
         afficher ("impair");
@@ -168,7 +170,7 @@ fin
         "Une fonction **calcule** et rend quelque chose ; une procedure **fait** (afficher, saisir) sans rendre. Une procedure n'a jamais de `renvoie`.",
     },
     {
-      question: "Une fonction `est_pair` qui renvoie un `booleen`, comment on l'appelle ?",
+      question: "Une fonction `isPair` qui renvoie un `booleen`, comment on l'appelle ?",
       options: [
         "Un prédicat",
         "Une variable globale",

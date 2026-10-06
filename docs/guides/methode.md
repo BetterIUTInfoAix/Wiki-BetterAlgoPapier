@@ -16,7 +16,7 @@ Avoir survolé les [Premiers pas](/decouverte/algorithme). Cette page sert penda
 ## La méthode
 
 1. **Relis l’énoncé deux fois.** Souligne les entrées (ce qu’on te donne), la sortie (ce qu’on attend) et les cas particuliers.
-2. **Liste tes variables.** Pour chacune : nom, type, rôle. Déclare tout en haut, avant même le `debut` logique.
+2. **Liste tes variables.** Pour chacune : nom, type, rôle. Dans le programme, déclare-les toutes au début du corps, juste après `debut`, avant toute instruction.
 3. **Pose le squelette.** `algorithme` / `debut` / `fin`, rien d’autre. Tu as déjà un programme valide.
 4. **Ajoute les E/S.** `afficher` pour guider l’utilisateur, `saisir` pour lire. Teste mentalement : ça dialogue déjà.
 5. **Choisis tes structures.** Un choix → [si](/tests/conditions). Une répétition → [boucles](/boucles). Une série → [tableaux](/donnees/tableaux). Un bout réutilisable → [fonction](/routines/fonctions).
@@ -27,7 +27,7 @@ Avoir survolé les [Premiers pas](/decouverte/algorithme). Cette page sert penda
 Énoncé : *lire deux notes, afficher leur moyenne.*
 
 ```algo
-algorithme moyenne_deux_notes
+algorithme moyenneDeuxNotes
 debut
     declarer n1 : reel;
     declarer n2 : reel;
@@ -51,7 +51,7 @@ Trace avec `n1 = 10`, `n2 = 14` :
 | afficher | 10 | 14 | 12 | 12 |
 
 :::tip[Bloqué plus de 10 minutes ?]
-Reviens une étape en arrière : 90 % des blocages viennent d’une variable mal choisie (étape 2) ou d’un énoncé mal lu (étape 1), pas de la syntaxe.
+Reviens une étape en arrière : un blocage vient souvent d’une variable mal choisie (étape 2) ou d’un énoncé mal lu (étape 1), pas de la syntaxe.
 :::
 
 **Ensuite :** [les erreurs que tout le monde fait](/guides/erreurs-frequentes) — pour les reconnaître avant la correction.
@@ -69,10 +69,10 @@ Reviens une étape en arrière : 90 % des blocages viennent d’une variable mal
       ],
       correctAnswers: [1],
       explanation:
-        "Étape 1 de la méthode. 90 % des blocages viennent d'un énoncé mal lu ou d'une variable mal choisie, pas de la syntaxe.",
+        "Étape 1 de la méthode : commence par clarifier l'énoncé et les variables avant de chercher une erreur de syntaxe.",
     },
     {
-      question: "Pourquoi déclarer toutes les variables tout en haut, avant le `debut` logique ?",
+      question: "Pourquoi regrouper toutes les déclarations au début du corps, juste après `debut` ?",
       options: [
         "Parce que le compilateur l'impose",
         "Parce que ça réduit le nombre de lignes",

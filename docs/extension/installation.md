@@ -10,8 +10,8 @@ description: Installer BetterAlgoPapier sur VSCode, VSCodium ou via vsix.
 
 Panneau extensions (`Ctrl+Maj+X`), chercher **Better Algo Papier**, **Installer**. Ou :
 
-```
-ext install betteriutinfoaix.better-algo-papier
+```bash
+code --install-extension betteriutinfoaix.better-algo-papier
 ```
 
 Marketplace : [betteral­gopapier sur VS Marketplace](https://marketplace.visualstudio.com/items?itemName=betteriutinfoaix.better-algo-papier).

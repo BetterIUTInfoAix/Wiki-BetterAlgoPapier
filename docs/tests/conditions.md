@@ -74,7 +74,7 @@ Avec `jour` qui vaut 2 :
 | 4 | `afficher ("Mardi");` | L’écran affiche : Mardi |
 
 :::danger[Piège Casali]
-Chaque `si` veut son `fsi`, chaque `choix_sur` son `fchoix`. Si ton programme « fait les deux chemins », cherche le `fsi` oublié — c’est lui 9 fois sur 10.
+Chaque `si` veut son `fsi`, chaque `choix_sur` son `fchoix`. Si ton programme se comporte de façon inattendue, vérifie que chaque bloc `si` se termine bien par `fsi`.
 :::
 
 ## À toi
@@ -130,15 +130,15 @@ fchoix
         "8 >= 10 est faux : on saute le premier bloc et on exécute le `sinon`. Un seul chemin s'exécute, jamais les deux.",
     },
     {
-      question: "Ton programme affiche « Admis » **puis** « Recalé ». Quel est le bug le plus probable ?",
+      question: "Qu'entraîne l'oubli de `fsi` à la fin d'un bloc `si` ?",
       options: [
-        "Le `fsi` a été oublié, les deux blocs s'exécutent",
-        "La condition est mal écrite",
-        "`moyenne` n'est pas de type `reel`",
+        "Le bloc conditionnel est incomplet et sa fin n'est pas indiquée",
+        "Les blocs `si` et `sinon` s'exécutent automatiquement l'un après l'autre",
+        "La condition devient toujours fausse",
       ],
       correctAnswers: [0],
       explanation:
-        "« Les deux chemins qui passent », c'est le `fsi` oublié — 9 fois sur 10, comme le dit le piège Casali.",
+        "`fsi` marque la fin du bloc conditionnel. Sans lui, le bloc est incomplet; on ne peut pas conclure que les deux branches seront exécutées.",
     },
     {
       question: "`jour` vaut 3 et tu utilises le `choix_sur (jour)` de la page. Quel cas s'exécute ?",

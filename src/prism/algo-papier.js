@@ -30,7 +30,7 @@ module.exports = function registerAlgoPapier(Prism) {
     ],
     keyword: {
       pattern:
-        /\b(?:si|sinon_si|sinon|fsi|procedure|fonction|algorithme|tant_que|pour|renvoie|jusqua|repeter|sortie|continue|choix_sur|fchoix|cas|autre|entre|variant_de|a|NON|boucle|fboucle|declarer|vaut|ne_vaut_pas|OU_SINON|ET_ALORS|OU|ET)\b/,
+        /\b(?:si|sinon_si|sinon|fsi|procedure|fonction|algorithme|tant_que|pour|renvoie|jusqua|repeter|sortie|continue|choix_sur|fchoix|cas|autre|entre|variant_de|a|NON|boucle|fboucle|declarer|vaut|ne_vaut_pas|OU_SINON|ET_ALORS|OU|ET|constante)\b/,
     },
     modifier: {
       pattern: /\b(?:debut|fin|faire|ffaire)\b/,
@@ -47,14 +47,14 @@ module.exports = function registerAlgoPapier(Prism) {
     },
     function: {
       pattern:
-        /\b(?:afficher|saisir|ligne_suivante|taille|redimensionner|modulo|rand|rang|succ|prec|toupper|tolower|isdigit|isalpha|isalnum|isspace|ispunct|isupper|islower)\b/,
+        /\b(?:afficher|saisir|ligne_suivante|taille|redimensionner|allonger|modulo|rand|rang|abs|succ|pred|prec|toupper|tolower|to_upper|is_lower|isdigit|isalpha|isalnum|isspace|ispunct|isupper|islower)\b/,
     },
     parameter: {
       pattern: /\b(?:in_out|in|out)\b/,
       alias: 'variable',
     },
     number: {
-      pattern: /\b\d+(?:\.\d+)?\b/,
+      pattern: /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b/,
       alias: 'constant',
     },
     operator: {

@@ -37,7 +37,7 @@ L’ordinateur exécute au pied de la lettre, sans implicite. Chaque imprécisio
 
 ## Pourquoi c’est stratégique (même avec l’IA)
 
-En début de cursus, près de **50 % des étudiants échouent au test de positionnement** par manque de rigueur logique, pas par manque de code. Et avec l’IA partout, le risque s’appelle la **dette cognitive** : déléguer ta réflexion à un outil sans comprendre ses rouages. L’IA écrit vite, mais c’est toi l’arbitre final — elle peut produire un code syntaxiquement correct et sémantiquement aberrant.
+En début de cursus, la rigueur logique est aussi importante que la maîtrise du code. Avec l’IA partout, le risque s’appelle la **dette cognitive** : déléguer ta réflexion à un outil sans comprendre ses rouages. L’IA écrit vite, mais c’est toi l’arbitre final — elle peut produire un code syntaxiquement correct et sémantiquement aberrant.
 
 Retiens le deal : **l’IA assiste, tu valides.** Et pour valider, il faut comprendre. D’où ce wiki.
 

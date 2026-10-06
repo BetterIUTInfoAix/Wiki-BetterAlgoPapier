@@ -28,20 +28,66 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
   const [values, setValues] = useState<Record<number, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [solved, setSolved] = useState(false);
+  const [storageReady, setStorageReady] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  // Charger le statut résolu depuis localStorage
+  // Restaurer les réponses avec leur état afin que « Résolu » corresponde au
+  // texte réellement conservé dans les champs.
   useEffect(() => {
     try {
       const stored = localStorage.getItem(storageKey);
-      if (stored === 'solved') {
-        setSolved(true);
-        setSubmitted(true);
+      if (stored && stored !== 'solved') {
+        const parsed: unknown = JSON.parse(stored);
+        if (parsed && typeof parsed === 'object') {
+          const state = parsed as {
+            values?: unknown;
+            submitted?: unknown;
+          };
+          if (state.values && typeof state.values === 'object') {
+            const savedValues = state.values as Record<string, unknown>;
+            const restoredValues: Record<number, string> = {};
+            blanks.forEach((blank, blankIdx) => {
+              const value = savedValues[String(blankIdx)];
+              if (typeof value === 'string') restoredValues[blankIdx] = value;
+            });
+            const hasAllValues = blanks.every(
+              (_, idx) => (restoredValues[idx] ?? '').trim() !== '',
+            );
+            const wasSubmitted = state.submitted === true && hasAllValues;
+            const answersAreCorrect = blanks.every((blank, idx) =>
+              blank.accepted.some(
+                (answer) =>
+                  normalize(answer) === normalize(restoredValues[idx] ?? ''),
+              ),
+            );
+            setValues(restoredValues);
+            setSubmitted(wasSubmitted);
+            setSolved(wasSubmitted && answersAreCorrect);
+          }
+        }
+      } else if (stored === 'solved') {
+        // Ancien format : il ne contient pas les réponses, donc ne peut pas
+        // justifier un état résolu cohérent après rechargement.
+        localStorage.removeItem(storageKey);
       }
     } catch {
-      // localStorage indisponible — ignorer
+      // localStorage indisponible ou donnée invalide — démarrer vide
+    } finally {
+      setStorageReady(true);
     }
-  }, [storageKey]);
+  }, [storageKey, blanks]);
+
+  useEffect(() => {
+    if (!storageReady) return;
+    try {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify({values, submitted, solved}),
+      );
+    } catch {
+      // localStorage indisponible — l'exercice reste utilisable en mémoire
+    }
+  }, [values, submitted, solved, storageKey, storageReady]);
 
   // Navigation manuelle (bouton « Suivant ») : exercice suivant sur la page,
   // sinon page suivante du parcours. Jamais automatique — ni au chargement,
@@ -68,15 +114,8 @@ export default function FillInBlank({id, title, blanks, hint}: FillInBlankConfig
       return b.accepted.some((a) => normalize(a) === normalized);
     });
 
-    if (allCorrect) {
-      setSolved(true);
-      try {
-        localStorage.setItem(storageKey, 'solved');
-      } catch {
-        // localStorage indisponible — ignorer
-      }
-    }
-  }, [values, blanks, storageKey]);
+    setSolved(allCorrect);
+  }, [values, blanks]);
 
   const handleReset = useCallback(() => {
     setValues({});

@@ -23,7 +23,7 @@ Rien d’obligatoire : c’est une page **référence**, reviens-y quand tu en a
 
 - `taille (t)` — nombre de cases ou de lettres.
 - `redimensionner (t, n);` — le tableau fait désormais exactement `n` cases.
-- `allonger (t, n);` — ajoute `n` cases non initialisées à la fin (vu en CM, coloration bientôt dans l’extension).
+- `allonger (t, n);` — ajoute `n` cases non initialisées à la fin (opération documentée dans la référence, mais à clarifier au regard de la règle contre l’allocation dynamique).
 
 Et côté `string` (détaillé dans [Afficher et saisir](/decouverte/entrees-sorties)) : guillemets protégés `\"`, concaténation avec `+`, accès caractère par caractère comme dans un tableau.
 
@@ -46,11 +46,12 @@ afficher (d);
 ## Caractères
 
 - `rang (c)` — le code numérique d’un caractère.
-- `succ (c)` / `prec (c)` — le caractère suivant / précédent.
+- `succ (c)` / `pred (c)` — le caractère suivant / précédent, d’après les noms de la section « Fonctions associées » de la référence algorithmique du dépôt.
 - `toupper (c)` / `tolower (c)` — passer en majuscule / minuscule.
 - `isdigit (c)`, `isalpha (c)`, `isalnum (c)`, `isspace (c)`, `ispunct (c)`, `isupper (c)`, `islower (c)` — des questions qui renvoient `vrai`/`faux`.
 
 ```algo
+declarer lettre : caractere;
 saisir (lettre);
 si (isdigit (lettre))
     afficher ("C’est un chiffre");
@@ -79,6 +80,7 @@ afficher (d);
 ```
 
 ```algo
+declarer c : caractere;
 saisir (c);
 si (isalpha (c))
     afficher ("C’est une lettre");
@@ -104,7 +106,7 @@ afficher (d1 + d2);
   blanks={[
     {
       before: "Pour obtenir un entier au hasard entre 1 et 6 inclus : d <- ",
-      accepted: ["rand (1, 6)", "rand (1, 6);", "rand(1,6)"],
+      accepted: ["rand (1, 6)", "rand(1,6)"],
       after: ";",
     },
     {
